@@ -1,0 +1,386 @@
+﻿
+@{
+    ViewData["Title"] = "Service Page - Blink It";
+    Layout = "_Layout";
+}
+<style>
+    .offers-caption {
+        background-color: #ff2e4d !important; 
+        opacity: 0.95; 
+    }
+
+        
+        .offers-caption h5 a {
+            color: #ffffff !important;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+            .offers-caption h5 a:hover {
+                color: #ffe0e3 !important; 
+            }
+
+        .offers-caption p {
+            color: #ffffff !important;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+
+    .section-tittle .element {
+        color: #ff2e4d !important;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+  
+    .section-tittle h2 {
+        color: #000000;
+        font-weight: 800;
+    }
+
+  
+    .offers-caption .cat-icon img {
+        filter: brightness(0) invert(1);
+    }
+
+
+    .single-offers {
+        position: relative;
+        overflow: hidden;
+    }
+    .offers-caption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 40px; 
+    }
+</style>
+<main>
+    <!--? Hero Start -->
+    <div class="ab-hero-section">
+
+        <img src="~/website/img/hero/hero-about-us.jpg" alt="Background" class="ab-bg-img">
+
+        <div class="ab-dark-overlay"></div>
+
+        <div class="ab-hero-bubbles">
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:18;"></span>
+        </div>
+
+        <div class="container ab-content-layer">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="ab-hero-text">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center bg-transparent p-0 m-0">
+                                <li class="breadcrumb-item"><a href="/Home">home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Services</li>
+                            </ol>
+                        </nav>
+
+                        <h2>Services</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+    <!--? Services Area Start -->
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 1200px; margin: 0 auto; padding: 60px 20px; text-align: center; background-color: #fff;">
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 50px;">
+
+            <div style="flex: 1; min-width: 220px; padding: 0 10px; position: relative;">
+                <div style="width: 120px; height: 120px; background: #fff; border-radius: 50%; box-shadow: 0 5px 20px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; position: relative; z-index: 2;">
+                    <svg style="width: 60px; height: 60px;" viewBox="0 0 24 24" fill="none" stroke="#ff4d4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+
+                    <div style="position: absolute; top: 50%; right: -10px; transform: translateY(-50%); background-color: #17a2b8; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 2px solid #fff;">01</div>
+                </div>
+                <h3 style="font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: #333;">Book Your Pickup</h3>
+                <p style="font-size: 14px; color: #777; line-height: 1.6;">Simply call or WhatsApp us at (0312) 2946615 or submit an order online.</p>
+            </div>
+
+            <div style="align-self: center; margin-top: -80px; opacity: 0.3; display: block;">
+                <svg width="50" height="20" viewBox="0 0 100 20" fill="none" stroke="#999" stroke-width="2" stroke-dasharray="5,5"><path d="M0,10 Q50,-10 100,10" /></svg>
+            </div>
+
+            <div style="flex: 1; min-width: 220px; padding: 0 10px; position: relative;">
+                <div style="width: 120px; height: 120px; background: #fff; border-radius: 50%; box-shadow: 0 5px 20px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; position: relative; z-index: 2;">
+                    <svg style="width: 60px; height: 60px;" viewBox="0 0 24 24" fill="none" stroke="#d48806" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4 8 4v14M12 11v10"></path></svg>
+
+                    <div style="position: absolute; top: 50%; right: -10px; transform: translateY(-50%); background-color: #17a2b8; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 2px solid #fff;">02</div>
+                </div>
+                <h3 style="font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: #333;">Pickup From Doorstep</h3>
+                <p style="font-size: 14px; color: #777; line-height: 1.6;">We provide an estimated time range of pickup like 6 pm - 8 pm.</p>
+            </div>
+
+            <div style="align-self: center; margin-top: -80px; opacity: 0.3; display: block;">
+                <svg width="50" height="20" viewBox="0 0 100 20" fill="none" stroke="#999" stroke-width="2" stroke-dasharray="5,5"><path d="M0,10 Q50,-10 100,10" /></svg>
+            </div>
+
+            <div style="flex: 1; min-width: 220px; padding: 0 10px; position: relative;">
+                <div style="width: 120px; height: 120px; background: #fff; border-radius: 50%; box-shadow: 0 5px 20px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; position: relative; z-index: 2;">
+                    <svg style="width: 60px; height: 60px;" viewBox="0 0 24 24" fill="none" stroke="#fa8c16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+
+                    <div style="position: absolute; top: 50%; right: -10px; transform: translateY(-50%); background-color: #17a2b8; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 2px solid #fff;">03</div>
+                </div>
+                <h3 style="font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: #333;">Sorting & Processing</h3>
+                <p style="font-size: 14px; color: #777; line-height: 1.6;">Our rider carefully bags up your clothes and we send a soft copy invoice.</p>
+            </div>
+
+            <div style="align-self: center; margin-top: -80px; opacity: 0.3; display: block;">
+                <svg width="50" height="20" viewBox="0 0 100 20" fill="none" stroke="#999" stroke-width="2" stroke-dasharray="5,5"><path d="M0,10 Q50,-10 100,10" /></svg>
+            </div>
+
+            <div style="flex: 1; min-width: 220px; padding: 0 10px; position: relative;">
+                <div style="width: 120px; height: 120px; background: #fff; border-radius: 50%; box-shadow: 0 5px 20px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; position: relative; z-index: 2;">
+                    <svg style="width: 60px; height: 60px;" viewBox="0 0 24 24" fill="none" stroke="#ff4d4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+
+                    <div style="position: absolute; top: 50%; right: -10px; transform: translateY(-50%); background-color: #17a2b8; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 2px solid #fff;">04</div>
+                </div>
+                <h3 style="font-size: 16px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; color: #333;">Delivery Within 3 Days</h3>
+                <p style="font-size: 14px; color: #777; line-height: 1.6;">Get fresh, and clean clothes right at your doorstep within 3 days.</p>
+            </div>
+
+        </div>
+
+        <a asp-controller="Orders" asp-action="Create" class="pl-btn-red w-50 btn-lg">Schedule Your Pickup Now!</a>
+
+    </div>
+    <!-- Services End -->
+
+    @* card grid *@
+    <section class="services-area2 section-padding40">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <span class="element">Our Best Services</span>
+                        <h2>Dry Cleaning & Laundry, Free Delivery</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
+                    <div class="single-service">
+                        <div class="service-img">
+                            <img src="~/website/img/hero/Service-1.jpg" alt="Laundry Service" class="img-fluid w-100">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-shirt"></i>
+                            </div>
+                        </div>
+                        <div class="service-cap">
+                            <h4><a href="#">Laundry Services</a></h4>
+                            <p>Let us pick up your dirty laundry, sort it, pre-treat stains, wash, dry, fold and deliver back to you in one package.</p>
+                            <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
+                    <div class="single-service">
+                        <div class="service-img">
+                            <img src="~/website/img/hero/Service-2.jpg" alt="Dry Cleaning" class="img-fluid w-100">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-vest"></i>
+                            </div>
+                        </div>
+                        <div class="service-cap">
+                            <h4><a href="#">Dry Cleaning Services</a></h4>
+                            <p>SMU students and local residents love our reliable dry cleaning services for the fast, accurate, top quality results.</p>
+                            <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
+                    <div class="single-service">
+                        <div class="service-img">
+                            <img src="~/website/img/hero/Service-Carpet.jpg" alt="Carpet Cleaning" class="img-fluid w-100">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-broom"></i>
+                            </div>
+                        </div>
+                        <div class="service-cap">
+                            <h4><a href="#">Carpet Cleaning</a></h4>
+                            <p>To keep carpet at peak performance, we recommend professional deep cleaning your carpet every 12 to 18 months.</p>
+                            <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
+                    <div class="single-service">
+                        <div class="service-img">
+                            <img src="~/website/img/hero/bed.jpg" alt="Alterations" class="img-fluid w-100">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-scissors"></i>
+                            </div>
+                        </div>
+                        <div class="service-cap">
+                            <h4><a href="#">Duvet Cleaning</a></h4>
+                            <p>We have expert cleaners and products that will fulfill your  requirements & make your bedroom neat and clean .</p>
+                            <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
+                    <div class="single-service">
+                        <div class="service-img">
+                            <img src="~/website/img/hero/Service-5.jpg" alt="Steam Iron" class="img-fluid w-100">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-temperature-arrow-up"></i>
+                            </div>
+                        </div>
+                        <div class="service-cap">
+                            <h4><a href="#">Steam Iron</a></h4>
+                            <p>These services are accomplished under the guidance of adroit personnel who have affluent industry proficiency.</p>
+                            <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6 mb-5">
+                    <div class="single-service">
+                        <div class="service-img">
+                            <img src="~/website/img/hero/Curtain-.png" alt="Shoes Cleaning" class="img-fluid w-100">
+                            <div class="service-icon">
+                                <i class="fa-solid fa-shoe-prints"></i>
+                            </div>
+                        </div>
+                        <div class="service-cap">
+                            <h4><a href="#">Curtain Cleaning</a></h4>
+                            <p>We use premium cleaning products and standardised processes to take care of your Curtains and give them refreshed look.</p>
+                            <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Explore</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    @* card grid *@
+
+    <!--? Offer-services Start  -->
+    <section class="offer-services pb-bottom2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <span class="element">Services</span>
+                        <h2>Your Clothes Deserve the Best!</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-gutters">
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-offers">
+                        <img src="~/website/img/gallery/offers1.png" alt="" class="w-100">
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-offers">
+                        <img src="~/website/img/gallery/offers2.png" alt="" class="w-100">
+                        <div class="offers-caption text-center">
+                            <div class="cat-icon">
+                                <img src="~/website/img/icon/offers-icon1.png" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a asp-controller ="Orders" asp-action="Create">SIT BACK & RELAX</a></h5>
+                                <p>
+                                    <strong>Professional Laundry Care:</strong> We specialize in treating your clothes with utmost care using high-quality detergents.<br><br>
+                                    <strong>Fast Door-to-door Service:</strong> Get rid of the hassle of visiting the laundromat! Book your pickup online now.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-offers">
+                        <img src="~/website/img/gallery/offers2.png" alt="" class="w-100">
+                        <div class="offers-caption text-center">
+                            <div class="cat-icon">
+                                <img src="~/website/img/icon/offers-icon1.png" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a asp-controller="Orders" asp-action="Create">WE ARE HERE!</a></h5>
+                                <p>
+                                    <strong>Quality Check:</strong> Every cloth goes through a proper quality check to ensure it is spotless and perfectly ironed.<br><br>
+                                    <strong>Affordable Prices:</strong> Premium laundry services at a budget-friendly price.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-offers">
+                        <img src="~/website/img/gallery/offers4.png" alt="" class="w-100">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Offer-services End  -->
+
+    <!--? Delievery Van -->
+    <section class="pl-delivery-section section-padding40">
+        <div class="pl-bg-shape-right"></div> <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6 col-md-12 mb-5 mb-lg-0 pl-delivery-content">
+                    <img src="~/website/img/hero/dotted-arrow.png" alt="" class="pl-dotted-arrow d-none d-lg-block">
+
+                    <h2 class="pl-main-title">
+                        Quality Service with <br>
+                        <span class="pl-text-red">Free Collection & Delivery</span>
+                    </h2>
+                    <p class="pl-desc-text my-4">
+                        It is our goal to offer you the best possible laundry and dry cleaning service available.
+                    </p>
+                    <h3 class="pl-phone-big">021 (354) 25-1-211</h3>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="pl-van-wrapper">
+                        <img src="~/website/img/hero/van-final.jpg" alt="Delivery Van" class="img-fluid pl-van-img">
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Van End -->
+   
+    <!--?  Map Area start  -->
+    <div class="Map-area">
+        <img src="~/website/img/gallery/Map.png" alt="" class="w-100">
+    </div>
+    <!-- Map Area End -->
+</main>

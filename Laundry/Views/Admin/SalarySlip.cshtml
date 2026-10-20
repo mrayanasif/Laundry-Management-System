@@ -1,0 +1,174 @@
+﻿@model Laundry.Models.Staff
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Salary Slip - BlinkIt";
+}
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        
+
+        .slip-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #dc3545; /* BlinkIt RED */
+            color: white;
+            padding: 30px;
+            border-bottom: 5px solid #b02a37;
+        }
+
+        .company-name {
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .sub-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .table-custom th {
+            background-color: #f8f9fa;
+            color: #dc3545;
+        }
+
+        .total-row {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .footer {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature-box {
+            text-align: center;
+            width: 200px;
+        }
+
+        .line {
+            border-top: 2px solid #333;
+            margin-top: 40px;
+        }
+
+        /* Print Button Style */
+        .print-btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Print honay par button chup jaye */
+        @@media print {
+            body
+
+        {
+            background-color: white;
+            padding: 0;
+        }
+
+        .slip-container {
+            box-shadow: none;
+            border: none;
+        }
+
+        .print-btn-container {
+            display: none;
+        }
+
+        }
+    </style>
+
+    @* Salary slip  *@
+    <div class="slip-container">
+        <div class="header d-flex justify-content-between align-items-center">
+            <div>
+                <div class="company-name">BlinkIt Laundry</div>
+                <div class="sub-text">Premium Laundry Services</div>
+            </div>
+            <div class="text-end">
+                <h4 class="m-0">SALARY SLIP</h4>
+                <div class="sub-text">@ViewBag.CurrentDate</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="row mb-4">
+                <div class="col-6">
+                    <h5 class="text-danger fw-bold">Employee Details:</h5>
+                    <p class="mb-0"><strong>Name:</strong> @Model.Name</p>
+                    <p class="mb-0"><strong>Role:</strong> @Model.Designation</p>
+                    <p class="mb-0"><strong>Status:</strong> @Model.Status</p>
+                </div>
+                <div class="col-6 text-end">
+                    <h5 class="text-danger fw-bold">Pay Period:</h5>
+                    <p class="mb-0"><strong>Month:</strong> @DateTime.Now.ToString("MMMM yyyy")</p>
+                </div>
+            </div>
+
+            <table class="table table-bordered table-custom">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th class="text-end">Amount (Rs.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic Salary</td>
+                        <td class="text-end">@Model.BasicSalary</td>
+                    </tr>
+                    <tr>
+                        <td>Allowances / Bonus</td>
+                        <td class="text-end">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-danger">Deductions (Late/Advance)</td>
+                        <td class="text-end text-danger">- @ViewBag.Deductions</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td>NET PAYABLE</td>
+                        <td class="text-end">Rs. @ViewBag.NetSalary</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="footer">
+                <div class="signature-box">
+                    <div class="line"></div>
+                    Employee Signature
+                </div>
+                <div class="signature-box">
+                    <div class="line"></div>
+                    Manager Signature
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="print-btn-container">
+        <button onclick="window.print()" class="pl-btn-green">
+            🖨️ Print Salary Slip
+        </button>
+        <button onclick="window.close()" class="pl-btn-red ">
+            Close
+        </button>
+    </div>
+

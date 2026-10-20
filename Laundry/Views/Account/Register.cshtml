@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Register - BlinkIt Laundry";
+}
+@model Laundry.Models.User
+
+<div class="ab-hero-section">
+    <img src="~/website/img/gallery/projects-img2.png" alt="Background" class="ab-bg-img">
+    <div class="ab-dark-overlay"></div>
+    <div class="ab-hero-bubbles">
+        <span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:24;"></span>
+        <span style="--i:10;"></span><span style="--i:14;"></span><span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+    </div>
+    <div class="container ab-content-layer">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="ab-hero-text">
+                    <h2>REGISTER YOURSELF</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* Register Start *@
+<div class="container mt-5" style="max-width: 400px;">
+    <div class="section-tittle text-center mb-50">
+        <h2 style="color:darkred;">REGISTER NOW !</h2>
+    </div>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div class="custom-register-container">
+       
+        <form asp-action="Register" method="post" class="custom-auth-form">
+           
+            <div class="mb-3">
+                <label class="custom-label">Full Name</label>
+                <input asp-for="FullName" class="custom-input" required
+                       minlength="5" 
+                       pattern="[A-Za-z\s]+" 
+                       title="Name should follow the pattern (e.g. Ali Khan)." 
+                       placeholder="ENTER YOUR FULL NAME"
+                       oninvalid="this.setCustomValidity('Invalid Name Format ')"
+                       oninput="this.setCustomValidity('')" />
+            </div>
+
+            <div class="mb-3">
+    <label class="custom-label">Email</label>
+    <input asp-for="Email" type="email" class="custom-input" required 
+           placeholder="ENTER YOUR EMAIL"
+           pattern="[a-zA-Z0-9][a-zA-Z0-9._-]*@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+           title="Enter Your Email "
+           oninvalid="this.setCustomValidity('Invalid Email Format')"
+           oninput="this.setCustomValidity('')" />
+</div>
+
+            <div class="mb-3">
+                <label class="custom-label">Password</label>
+                <input asp-for="Password" type="password" class="custom-input" required
+                       minlength="6"
+                       placeholder="ENTER PASSWORD" />
+            </div>
+
+            <div class="mb-3">
+                <label class="custom-label">Address</label>
+                <input asp-for="Address" class="custom-input" required 
+                       minlength="10" 
+                       placeholder="ENTER YOUR FULL ADDRESS" />
+            </div>
+
+            <div class="mb-3">
+                <label class="custom-label">Contact</label>
+                <input asp-for="Contact" class="custom-input" required 
+                       pattern="[0-9]{11}" 
+                       maxlength="11"
+                       title="Phone number should have 11 digits " 
+                       placeholder="ENTER 11 DIGIT PHONE NUMBER" />
+            </div>
+
+            <button type="submit" class="pl-btn-red w-100">Register</button>
+        </form>
+    </div>
+
+    <div class="mt-3 text-center ">
+        <a asp-action="Login" class="pl-btn-green w-100">
+            Already Have An Account | Sign In
+        </a>
+    </div>
+</div>

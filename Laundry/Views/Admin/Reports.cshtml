@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Business Reports - BlinkIt";
+}
+@* business statistics *@
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="orderlist-text"><i class="fas fa-chart-line me-2"></i>Business Analytics</h2>
+            <p class="text-muted mb-0">Detailed breakdown of garments and top customers</p>
+        </div>
+        <button onclick="window.print()" class="pl-btn-green"><i class="fas fa-print me-2"></i>Print Report</button>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-warning text-white py-3">
+            <h5 class="mb-0 fw-bold text-white"><i class="fas fa-tshirt me-2"></i>Garment-wise Collection Revenue </h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light text-secondary">
+                        <tr>
+                            <th class="ps-4">Item Name</th>
+                            <th class="text-center">Total Qty</th>
+                            <th class="text-end pe-4">Revenue Generated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.GarmentStats != null)
+                        {
+                            @foreach (dynamic item in ViewBag.GarmentStats)
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-bold text-dark">@item.ItemName</td>
+                                    <td class="text-center"><span class="badge bg-light text-dark border">@item.Count</span></td>
+                                    <td class="text-end pe-4 fw-bold text-success">+ Rs. @Convert.ToInt32(item.Income)</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="3" class="text-center py-3">No data available</td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white py-3">
+            <h5 class="text-white"><i class="fas fa-crown me-2"></i>Top Customers</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light text-secondary">
+                        <tr>
+                            <th class="ps-4">Customer Name</th>
+                            <th class="text-center">Total Orders</th>
+                            <th class="text-end pe-4">Total Business</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.CustomerStats != null)
+                        {
+                            @foreach (dynamic cust in ViewBag.CustomerStats)
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-bold text-dark">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-light rounded-circle p-1 me-2 text-primary">
+                                                <i class="fas fa-user-circle"></i>
+                                            </div>
+                                            @cust.Name
+                                        </div>
+                                    </td>
+                                    <td class="text-center"><span class="badge bg-primary">@cust.OrdersCount Orders</span></td>
+                                    <td class="text-end pe-4 fw-bold text-primary">+ Rs. @Convert.ToInt32(@cust.TotalSpent)</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="3" class="text-center py-3">No data available</td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

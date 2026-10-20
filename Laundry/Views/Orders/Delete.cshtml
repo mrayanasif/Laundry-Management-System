@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Booking - BlinkIt";
+}
+@model Laundry.Models.Order
+<!--? Hero Start -->
+<div class="ab-hero-section">
+
+    <img src="~/website/img/hero/Washing-About.jpg" alt="Background" class="ab-bg-img">
+
+    <div class="ab-dark-overlay"></div>
+
+    <div class="ab-hero-bubbles">
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+    </div>
+
+    <div class="container ab-content-layer">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="ab-hero-text">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center bg-transparent p-0 m-0">
+                            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Invoice</li>
+                        </ol>
+                    </nav>
+
+                    <h2>Booking</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+@* delete card *@
+<div class="container mt-5">
+    <div class="card shadow border-danger">
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0">⚠️ Delete Confirmation</h3>
+        </div>
+        <div class="card-body">
+            <h4 class="text-danger">Are you sure you want to cancel Your Booking?</h4>
+            <p class="text-muted">Once You Proceed You Cannot Revert it Back.</p>
+
+            <hr />
+
+            <dl class="row">
+                <dt class="col-sm-3" style=" font-size: 1.4rem;">Order ID:</dt>
+                <dd class="col-sm-9 fw-bolder" style=" font-size: 1.4rem;">#@Model.OrderId</dd>
+
+                <dt class="col-sm-3" style="font-size: 1.4rem;">Order Date:</dt>
+                <dd class="col-sm-9 fw-bolder" style="font-size: 1.4rem;">@Model.OrderDate.ToShortDateString()</dd>
+
+                <dt class="col-sm-3" style="font-size: 1.4rem;">Total Amount:</dt>
+                <dd class="col-sm-9 fw-bolder" style="font-size: 1.4rem;">Rs. @Model.TotalAmount</dd>
+
+                <dt class="col-sm-3" style="font-size: 1.4rem;">Status:</dt>
+                <dd class="col-sm-9" style="font-size: 1.4rem;">
+                    <h4 class="badge bg-warning text-dark fw-bolder">@Model.Status</h4>
+                </dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="OrderId" />
+                <div class="mt-3 text-center ">
+                <button type="submit" class="pl-btn-red btn-lg w-50 ">Yes, Delete My Order</button>
+                
+                <a asp-action="MyOrders"><h3 class="pl-btn-green btn-lg w-50">No, Go Back</h3></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

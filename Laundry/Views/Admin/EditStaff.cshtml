@@ -1,0 +1,59 @@
+﻿@model Laundry.Models.Staff
+@{
+    ViewData["Title"] = "Edit Staff - BlinkIt";
+    Layout = "_AdminLayout";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-top border-5 border-danger">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0 fw-bold">Edit Employee Details</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/Admin/EditStaff" method="post">
+                        <input type="hidden" asp-for="StaffId" />
+
+                        <div class="mb-3">
+                            <label>Name</label>
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Role</label>
+                            <select asp-for="Designation"class="form-select">
+                                <option>Rider</option>
+                                <option>Washer</option>
+                                <option>Iron Man</option>
+                                <option>Manager</option>
+                                <option>Quality Checker</option>
+                                <option>HR</option>
+                                <option>Sales Department</option>
+                                <option>Customer Care</option>
+                                <option>Refund Department</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Basic Salary</label>
+                            <input asp-for="BasicSalary" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Status</label>
+                            <select asp-for="Status" class="form-select">
+                                <option>Active</option>
+                                <option>On Leave</option>
+                                <option>Resigned</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="pl-btn-green w-50">Update Record</button>
+                        <a href="/Admin/Staff" class="pl-btn-red w-50 text-center">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

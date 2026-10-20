@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keyword" content="" />
+    <meta name="author" content="flexilecode" />
+    <!--! The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags !-->
+    <!--! BEGIN: Apps Title-->
+    <title> @ViewData["Title"]</title>
+    <!--! END:  Apps Title-->
+    <!--! BEGIN: Favicon-->
+    <link rel="shortcut icon" type="image/x-icon" href="~/website/img/logo/Washing-logo-up.png" />
+    <!--! END: Favicon-->
+    <!--! BEGIN: Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/admin/css/bootstrap.min.css" />
+    <!--! END: Bootstrap CSS-->
+    <!--! BEGIN: Vendors CSS-->
+    <link rel="stylesheet" type="text/css" href="~/admin/vendors/css/vendors.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/admin/vendors/css/daterangepicker.min.css" />
+    <link rel="stylesheet" href="~/admin/vendors/css/custom-admin.css"/>
+    <link rel="stylesheet" type="text/css" href="~/admin/css/theme.min.css" />
+  
+    <!--! END CSS-->
+
+</head>
+
+<body>
+    <!--! ================================================================ !-->
+    <!--! [Start] Navigation Manu !-->
+    <!--! ================================================================ !-->
+    <nav class="nxl-navigation">
+        <div class="navbar-wrapper">
+            <div class="m-header">
+                <a href="index.html" class="b-brand">
+                    <!-- ========   change your logo hear   ============ -->
+                    <img src="~/website/img/logo/Washing-logo-up.png" height="60" class="logo logo-lg" />
+                    <img src="~/website/img/logo/Washing-logo-up.png" height="20" class="logo logo-sm" />
+                </a>
+            </div>
+            <div class="navbar-content">
+                <ul class="nxl-navbar">
+                    <li class="nxl-item nxl-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nxl-item">
+                        <a asp-controller="Admin" asp-action="Index" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-airplay"></i></span>
+                            <span class="nxl-mtext">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a asp-controller="Admin" asp-action="ManageItems" class="nxl-link">
+                            <span class="nxl-micon"><i class="feather-shopping-bag"></i></span>
+                            <span class="nxl-mtext">Laundry Items</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a asp-controller="Admin" asp-action="Users" class="nxl-link">
+                            <span class="nxl-micon"><i class="fas fa-users"></i></span>
+                            <span class="nxl-mtext">Users</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a asp-controller="Admin" asp-action="InvoiceUsers" class="nxl-link">
+                            <span class="nxl-micon"><i class="fas fa-money-bill-transfer"></i></span>
+                            <span class="nxl-mtext">Invoice</span>
+                        </a>
+                    </li>
+
+                    <li class="nxl-item">
+                        <a class="nxl-link" asp-controller="Admin" asp-action="Reports" >
+                            <span class="nxl-micon"><i class="fas fa-file-pdf"></i></span>
+                            <span class="nxl-mtext">Reports</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a class="nxl-link" asp-controller="Admin" asp-action="CashBook">
+                            <span class="nxl-micon"><i class="fas fa-money-check"></i></span>
+                            <span class="nxl-mtext">Cash Book</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a asp-controller="Admin" asp-action="Staff" class="nxl-link">
+                            <span class="nxl-micon"><i class="fas fa-people-group"></i></span>
+                            <span class="nxl-mtext">Staff</span>
+                        </a>
+                    </li>
+                    <li class="nxl-item">
+                        <a asp-controller="Admin" asp-action="Chat" class="nxl-link">
+                            <span class="nxl-micon"><i class="fas fa-comment-alt"></i></span>
+                            <span class="nxl-mtext">SMS Chat</span>
+                        </a>
+                    </li>
+
+                    <li class="nxl-item">
+                        <a class ="nxl-link" asp-controller="Home" asp-action="Index" target="_blank">
+                            <span class="nxl-micon"><i class="fas fa-globe"></i></span>
+                            <span class="nxl-mtext">Proceed To Website</span>
+                        </a>
+                    </li>
+                  
+                    <li class="nxl-item">
+                        <a class="nxl-link" href="javascript:void(0);">
+                            <span class="nxl-micon"><i class="fas fa-user-circle"></i></span>
+                            <span class="fw-bolder text-success">
+                                Hi, @(Context.Session.GetString("UserName") ?? "Admin")
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nxl-item"><hr class="m-0 border-secondary" style="opacity: 0.2;"></li>
+
+                    <li class="nxl-item">
+                        <a class="nxl-link" asp-controller="Account" asp-action="Logout">
+                            <span class="nxl-micon"><i class="fas fa-power-off text-danger"></i></span>
+                            <span class="nxl-mtext text-danger">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+             </div>
+        </div>
+    </nav>
+    <!--! ================================================================ !-->
+    <!--! [End]  Navigation Manu !-->
+    <!--! ================================================================ !-->
+
+    <!--! [Start] Header !-->
+    <!--! ================================================================ !-->
+    <header class="nxl-header">
+        <div class="header-wrapper">
+            <!--! [Start] Header Left !-->
+            <div class="header-left d-flex align-items-center gap-4">
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <a href="javascript:void(0);" class="nxl-head-mobile-toggler" id="mobile-collapse">
+                    <div class="hamburger hamburger--arrowturn">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
+                </a>
+                <!--! [Start] nxl-head-mobile-toggler !-->
+                <!--! [Start] nxl-navigation-toggle !-->
+                <div class="nxl-navigation-toggle">
+                    <a href="javascript:void(0);" id="menu-mini-button">
+                        <i class="feather-align-left"></i>
+                    </a>
+                    <a href="javascript:void(0);" id="menu-expend-button" style="display: none">
+                        <i class="feather-arrow-right"></i>
+                    </a>
+                </div>
+               
+                   
+                </div>
+               
+            </div>
+            
+     
+    </header>
+    <div class="nxl-container">
+
+        @* <header class="nxl-header">
+            ...
+        </header> *@
+
+        
+    <!--! ================================================================ !-->
+    <!--! [End] Header !-->
+    <!-- ================= Main Content ================= -->
+    <!-- ================= Admin Footer ================= -->
+        <main class="nxl-main-content">
+
+            <div class="nxl-main-body p-4">
+                @RenderBody()
+            </div>
+
+            <footer class="admin-footer mt-auto py-3 bg-white border-top">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center text-md-start">
+                            <span class="text-muted small">
+                                &copy; 2026 <strong class="text-danger">BlinkIt Laundry</strong>.
+                            </span>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <span class="text-muted small">
+                                Designed with <i class="fas fa-heart text-danger"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+
+    <!-- ================= Scripts ================= -->
+    <script src="~/admin/vendors/js/vendors.min.js"></script>
+    <script src="~/admin/vendors/js/daterangepicker.min.js"></script>
+    <script src="~/admin/vendors/js/apexcharts.min.js"></script>
+    <script src="~/admin/vendors/js/circle-progress.min.js"></script>
+    <script src="~/admin/js/common-init.min.js"></script>
+    <script src="~/admin/js/dashboard-init.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+﻿@model IEnumerable<Laundry.Models.Staff>
+@{
+    ViewData["Title"] = "Staff Management - BlinkIt";
+    Layout = "_AdminLayout";
+}
+
+<style>
+
+    .text-blinkit {
+        color: #dc3545;
+    }
+    .custom-modal-overlay {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); 
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custom-modal-box {
+        background: white;
+        width: 500px;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        position: relative;
+        animation: slideDown 0.3s ease;
+        border-top: 5px solid #dc3545;
+    }
+
+    @@keyframes slideDown {
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+</style>
+@* table *@
+<div class="container-fluid py-4">
+    <h2 class="orderlist-text">Staff Managment</h2>
+    <div class="row mb-4">
+        <div class="col-md-3">
+           
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body ">
+                    <h5 class="text-white">Total Staff</h5>
+                    <h3 class="text-white">@Model.Count()</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 text-end align-self-center">
+            <button class="pl-btn-red" onclick="openAddModal()">
+                <i class="fas fa-plus"></i> Add Employee
+            </button>
+            <button class="pl-btn-green" onclick="openPayrollModal()">
+                <i class="fas fa-calculator"></i> Run Payroll
+            </button>
+        </div>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-danger ">
+            <h5 class="mb-0 text-blinkit fw-bold text-white">Employee List</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Basic Salary</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-light text-danger rounded-circle p-2 me-2" style="width:40px;height:40px;text-align:center;">
+                                        @item.Name.Substring(0, 1)
+                                    </div>
+                                    @item.Name
+                                </div>
+                            </td>
+                            <td><span class="badge bg-warning">@item.Designation</span></td>
+                            <td>Rs. @item.BasicSalary</td>
+                            <td><span class="badge bg-primary ">@item.Status</span></td>
+                            <td>
+                                <a href="/Admin/EditStaff/@item.StaffId" class="pl-btn-green"><i class="fas fa-edit"></i></a>
+                                <a  class="pl-btn-red btn-outline-danger" onclick="openDeleteModal(@item.StaffId)"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@* Addition of employee *@
+<div id="addStaffModal" class="custom-modal-overlay">
+    <div class="custom-modal-box">
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="fw-bold text-blinkit">Add New Employee</h5>
+            <button class="btn btn-sm btn-secondary" onclick="closeModals()">X</button>
+        </div>
+
+        <form action="/Admin/AddStaff" method="post">
+            <div class="mb-3">
+                <label>Full Name</label>
+                <input type="text" name="Name" class="form-control" required placeholder="e.g. Rashid Ali" />
+            </div>
+            <div class="mb-3">
+                <label>Designation</label>
+                <select name="Designation" class="form-control">
+                    <option>Rider</option>
+                    <option>Washer</option>
+                    <option>Iron Man</option>
+                    <option>Quality Checker</option>
+                    <option>HR</option>
+                    <option>Sales Department</option>
+                    <option>Customer Care</option>
+                    <option>Refund Department</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Basic Salary (Rs.)</label>
+                <input type="number" name="BasicSalary" class="form-control" required placeholder="25000" />
+            </div>
+
+            <div class="text-end">
+                <button type="button" class="pl-btn-red" onclick="closeModals()">Cancel</button>
+                <button type="submit" class="pl-btn-green">Save Employee</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* Salary Slip *@
+<div id="payrollModal" class="custom-modal-overlay">
+    <div class="custom-modal-box">
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="fw-bold text-blinkit">Calculate Salary</h5>
+            <button class="btn btn-sm btn-secondary" onclick="closeModals()">X</button>
+        </div>
+
+        <div class="mb-3">
+            <label class="fw-bold">Select Employee</label>
+            <select class="form-control" id="payrollEmpSelect" onchange="updateSalaryField()">
+                <option value="0" data-salary="0">-- Select Staff --</option>
+                @foreach (var emp in Model)
+                {
+                    <option value="@emp.StaffId" data-salary="@emp.BasicSalary">@emp.Name (@emp.Designation)</option>
+                }
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label>Basic Salary</label>
+                <input type="number" id="payBasic" class="form-control" readonly />
+            </div>
+            <div class="col-6 mb-3">
+                <label>Deductions</label>
+                <input type="number" id="payDeduct" class="form-control" value="0" oninput="calcNet()" />
+            </div>
+        </div>
+
+        <div class="alert alert-danger text-center">
+            <strong>Net Payable: Rs. <span id="payNet">0</span></strong>
+        </div>
+
+        <div class="text-end">
+            <button type="button" class="pl-btn-red" onclick="closeModals()">Close</button>
+            <button type="button" class="pl-btn-green" onclick="printSlip()">Generate Slip</button>
+        </div>
+    </div>
+</div>
+@* Deletemodal *@
+<div id="deleteModal" class="custom-modal-overlay">
+    <div class="custom-modal-box" style="max-width: 400px; text-align: center;">
+
+        <div class="mb-3">
+            <i class="fas fa-exclamation-circle text-danger" style="font-size: 50px;"></i>
+        </div>
+
+        <h4 class="fw-bold text-dark">Are you sure?</h4>
+        <p class="text-muted">Do you really want to delete this employee? This process cannot be undone.</p>
+
+        <div class="d-flex justify-content-center mt-4">
+            <button class="pl-btn-green" onclick="closeDeleteModal()">Cancel</button>
+
+            <a id="btnConfirmDelete" href="#" class="pl-btn-red">Delete</a>
+        </div>
+
+    </div>
+</div>
+<script>
+ 
+    function openAddModal() {
+        document.getElementById("addStaffModal").style.display = "flex";
+    }
+
+    function openPayrollModal() {
+        document.getElementById("payrollModal").style.display = "flex";
+    }
+
+    function closeModals() {
+        document.getElementById("addStaffModal").style.display = "none";
+        document.getElementById("payrollModal").style.display = "none";
+    }
+
+  
+    function updateSalaryField() {
+        var select = document.getElementById("payrollEmpSelect");
+        var salary = select.options[select.selectedIndex].getAttribute("data-salary");
+        document.getElementById("payBasic").value = salary;
+        calcNet();
+    }
+
+    function calcNet() {
+        var basic = parseFloat(document.getElementById("payBasic").value) || 0;
+        var deduct = parseFloat(document.getElementById("payDeduct").value) || 0;
+        document.getElementById("payNet").innerText = basic - deduct;
+    }
+
+        function printSlip() {
+   
+        var staffId = document.getElementById("payrollEmpSelect").value;
+
+        var deduct = document.getElementById("payDeduct").value || 0;
+
+        if(staffId == "0") {
+            alert("Please select an employee first!");
+            return;
+        }
+
+        var url = '/Admin/SalarySlip?id=' + staffId + '&deductions=' + deduct;
+        window.open(url, '_blank');
+        closeModals();
+    }
+    // --- 🗑️ DELETE MODAL LOGIC ---
+
+    function openDeleteModal(staffId) {
+        // 1. Delete ka asli link banao
+        var deleteUrl = '/Admin/DeleteStaff/' + staffId;
+
+        // 2. Modal ke 'Yes' button mein wo link set karo
+        document.getElementById("btnConfirmDelete").setAttribute("href", deleteUrl);
+
+        // 3. Modal dikhao
+        document.getElementById("deleteModal").style.display = "flex";
+    }
+
+    function closeDeleteModal() {
+        document.getElementById("deleteModal").style.display = "none";
+    }
+</script>

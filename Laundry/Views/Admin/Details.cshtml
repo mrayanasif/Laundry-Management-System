@@ -1,0 +1,236 @@
+﻿@model Laundry.Models.Order
+@{
+    ViewData["Title"] = " Invoice - BlinkIt";
+    Layout = "_AdminLayout";
+}
+
+<style>
+   
+    :root {
+        --inv-primary: #ff2e4d; 
+        --inv-primary-dark: #d6253e;
+        --inv-bg-light: #fff5f6;
+    }
+
+    /* --- CARD & HEADER --- */
+    .inv-card {
+        border: none !important;
+        border-radius: 12px !important;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+        background-color: white;
+    }
+
+    .inv-header {
+        background: linear-gradient(135deg, #ff2e4d 0%, #d6253e 100%) !important;
+        color: white !important;
+        padding: 20px 30px; 
+        border-bottom: 5px solid rgba(0,0,0,0.1);
+        -webkit-print-color-adjust: exact;
+    }
+
+  
+    .inv-text-red {
+        color: #ff2e4d !important;
+    }
+
+    .inv-text-dark {
+        color: #333 !important;
+        font-weight: 700;
+    }
+
+    .inv-table-head {
+        background-color: #fff5f6 !important;
+        color: #ff2e4d !important;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        -webkit-print-color-adjust: exact;
+    }
+
+   
+   
+    @@media print {
+        body *
+
+    {
+        visibility: hidden;
+    }
+
+    #invoice-unique-area, #invoice-unique-area * {
+        visibility: visible;
+    }
+
+    #invoice-unique-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .inv-header {
+        background-color: #ff2e4d !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .inv-table-head {
+        background-color: #fff5f6 !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    }
+</style>
+@* Invoice Page *@
+<div class="container py-4 mb-5 pb-5">  
+
+    <div class="mb-3 no-print">
+        <a asp-action="Index" class="pl-btn-red">
+            <i class="fas fa-arrow-left me-1"></i> Back to Orders
+        </a>
+    </div>
+
+    <div class="card inv-card" id="invoice-unique-area">
+
+        <div class="card-header inv-header">
+            <div class="row align-items-center w-100 m-0">
+
+                <div class="col-3 text-start ps-0">
+                    <div class="bg-white rounded p-2 d-inline-block shadow-sm">
+                        <img src="~/website/img/logo/Washing-logo-up.png" height="50" alt="BlinkIt Logo" />
+                    </div>
+                </div>
+
+                <div class="col-6 text-center">
+                    <h1 class="fw-bold text-white mb-0" style="letter-spacing: 5px; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">INVOICE</h1>
+                    <p class="text-white-50 mb-0 fw-medium">Thank you for your Purchase!!!</p>
+                </div>
+
+                <div class="col-3 text-end pe-0" style="text-align: right;">
+                    <h4 class="mb-1 fw-bold text-nowrap text-white">Order #@Model.OrderId</h4>
+
+                    <div class="mb-2 d-flex justify-content-end">
+                        @if (Model.Status == "Pending")
+                        {
+                            <span class="badge bg-warning text-white border border-white btn-lg fw-bold">Pending</span>
+                        }
+                        else if (Model.Status == "Completed" || Model.Status == "Delivered")
+                        {
+                            <span class="badge bg-success border border-white btn-lg fw-bold">Paid & @Model.Status</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-light text-danger">@Model.Status</span>
+                        }
+                    </div>
+                    @* barcode generation BWIP (Barcode writer In Pure Java Script) yeh order id ko bwip ki madad sai barcode image mein convert kardaita hai  *@
+                    <div class="d-flex justify-content-end">
+                        <div class="text-center" style="margin-top: 20px;">
+
+                            @{
+                                string barcodeString = $"LNDRY-{Model.OrderDate.ToString("yyyyMMdd")}-{Model.OrderId}";
+                            }
+
+                            <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=@barcodeString&scale=3"
+                                 alt="Barcode"
+                                 style="height: 80px;" />
+
+                            <p style="font-weight: bold; font-size: 16px; margin-top: 5px; letter-spacing: 2px;">
+                                @barcodeString
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-body p-5">
+
+            <div class="row mb-5">
+                <div class="col-sm-6">
+                    <h6 class="inv-text-red text-uppercase fw-bold mb-3" style="letter-spacing: 1px;">Billed To:</h6>
+                    <h4 class="inv-text-dark fw-bold mb-1">@Model.User.FullName</h4>
+                    <p class="text-muted mb-0"><i class="fas fa-envelope me-2 inv-text-red"></i>@Model.User.Email</p>
+                    <p class="text-muted"><i class="fas fa-id-badge me-2 inv-text-red"></i>User ID: @Model.UserId</p>
+                    <p class="text-muted"><i class="fas fa-calendar-alt me-2 inv-text-red"></i>Date: @Model.OrderDate.ToString("dd MMM yyyy")</p>
+                </div>
+                <div class="col-sm-6 text-end">
+                    <div class="p-4 rounded-3" style="background-color: #fff5f6; border-left: 5px solid #ff2e4d;">
+                        <h5 class="inv-text-red fw-bold">Total Due:</h5>
+                        <h2 class="fw-bold inv-text-dark">Rs. @Model.TotalAmount</h2>
+                        <span class="text-muted small">All Prices are Tax Inclusive</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive mb-5">
+                <table class="table table-hover align-middle">
+                    <thead class="inv-table-head">
+                        <tr>
+                            <th class="py-3 ps-4 rounded-start">Item Description</th>
+                            <th class="py-3 text-center">Unit Price</th>
+                            <th class="py-3 text-center">Qty</th>
+                            <th class="py-3 text-end pe-4 rounded-end">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderDetails)
+                        {
+                            <tr>
+                                <td class="ps-4 py-3 fw-bold text-dark">@item.ItemName</td>
+                                <td class="text-center py-3 text-muted">Rs. @item.Price</td>
+                                <td class="text-center py-3 fw-bold bg-light">@item.Quantity</td>
+                                <td class="text-end pe-4 py-3 fw-bold inv-text-red">Rs. @(item.Price* item.Quantity)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="h-100 p-3 rounded border border-light">
+                        <h6 class="inv-text-red fw-bold"><i class="fas fa-info-circle me-1"></i> Terms & Conditions:</h6>
+                        <ul class="text-muted small ps-3 mb-0" style="line-height: 1.6;">
+                            <li>Please check your clothes before handing the payment to the rider.</li>
+                            <li>BlinkIt Laundry is not responsible for any Claims without invoice.</li>
+                            <li>Invoice are system generated if there is an error kindly report to our helpline number.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td class="text-muted">Subtotal:</td>
+                                <td class="text-end fw-bold">Rs. @Model.TotalAmount</td>
+                            </tr>
+                            <tr>
+                                <td class="text-muted">Delivery Charges:</td>
+                                <td class="text-end fw-bold text-success">Free</td>
+                            </tr>
+                            <tr class="border-top mt-2">
+                                <td class="fs-5 fw-bold text-dark pt-3">Grand Total:</td>
+                                <td class="fs-4 fw-bold inv-text-red text-end pt-3">Rs. @Model.TotalAmount</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer bg-white p-4 no-print text-end border-top">
+            <button onclick="window.print()" class="pl-btn-red shadow-lg">
+                <i class="fas fa-print me-2"></i> Print Invoice
+            </button>
+
+        </div>
+    </div>
+</div>

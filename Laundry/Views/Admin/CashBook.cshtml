@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Cash Book - BlinkIt";
+}
+
+<div class="container-fluid py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="orderlist-text"><i class="fas fa-book me-2"></i>Cash Book </h2>
+        <button onclick="window.print()" class="pl-btn-green"><i class="fas fa-print me-2"></i>Print Report</button>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card bg-success text-white shadow-sm">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-0 text-white">Total Cash Received</h5>
+                        <small>Income (Credit)</small>
+                    </div>
+                    <h2 class="fw-bold mb-0 text-white">  Rs. @ViewBag.TotalCashIn.ToString("0")</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-danger text-white shadow-sm">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-0 text-white">Total Pending Amount</h5>
+                        <small>Receivable (Debit)</small>
+                    </div>
+                    <h2 class="fw-bold mb-0 text-white">  Rs. @ViewBag.TotalPending.ToString("0")</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0 fw-bold text-white"><i class="fas fa-check-circle me-2"></i>Payment Received</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4">Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Date</th>
+                        <th>Payment Status</th>
+                        <th class="text-end pe-4">Amount Received</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.ReceivedOrders as List<Laundry.Models.Order>)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-bold">#@item.OrderId</td>
+                            <td>@item.User.FullName</td>
+                            <td>@item.OrderDate.ToString("dd MMM yyyy")</td>
+                            <td><span class="badge bg-success">Paid</span></td>
+                            <td class="text-end pe-4 fw-bold text-success">+ Rs. @Convert.ToInt32(item.TotalAmount)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @if ((ViewBag.ReceivedOrders as List<Laundry.Models.Order>).Count == 0)
+            {
+                <div class="p-4 text-center text-muted">No payments received yet.</div>
+            }
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-danger text-white">
+            <h5 class="mb-0 fw-bold text-white"><i class="fas fa-clock me-2"></i>Pending Payment </h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4">Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Date</th>
+                        <th>Order Status</th>
+                        <th class="text-end pe-4">Amount Due</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.PendingOrders as List<Laundry.Models.Order>)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-bold">#@item.OrderId</td>
+                            <td>@item.User.FullName</td>
+                            <td>@item.OrderDate.ToString("dd MMM yyyy")</td>
+                            <td><span class="badge bg-warning text-dark">@item.Status</span></td>
+                            <td class="text-end pe-4 fw-bold text-danger">+ Rs. @Convert.ToInt32(item.TotalAmount)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @if ((ViewBag.PendingOrders as List<Laundry.Models.Order>).Count == 0)
+            {
+                <div class="p-4 text-center text-muted">No pending payments. Good job!</div>
+            }
+        </div>
+    </div>
+
+</div>

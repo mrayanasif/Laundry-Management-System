@@ -1,0 +1,351 @@
+﻿@model IEnumerable<Laundry.Models.Order>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Dashboard - BlinkIt";
+
+
+// Calculation hai card ki 
+    double total = ViewBag.TotalOrders == null || ViewBag.TotalOrders == 0 ? 1 : (double)ViewBag.TotalOrders;
+    double completedCount = ViewBag.CompletedOrders ?? 0;
+    double pendingCount = ViewBag.PendingOrders ?? 0;
+
+    // Percentages
+    double completedPct = Math.Round((completedCount / total) * 100);
+    double pendingPct = Math.Round((pendingCount / total) * 100);
+    double usersCount = ViewBag.TotalUsers ?? 0;
+
+    // Amounts
+    decimal incomeReceived = ViewBag.IncomeReceived ?? 0;
+    decimal incomePending = ViewBag.IncomePending ?? 0;
+}
+@* Website Card display *@
+<div id="blink-orders-container">
+    <div class="container-fluid px-4 py-3">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="orderlist-text">Dashboard Overview</h2>
+                <p class="text-muted mb-0">Hey Admin | Welcome Back !</p>
+            </div>
+        </div>
+        @* Payment recieved *@
+        <div class="row g-4 mb-5">
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card bg-danger text-white border-0 shadow h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="text-white-50 text-uppercase fw-bolder mb-1">Payment Received </h6>
+                                <h3 class="fw-bolder text-white mb-0"> Rs. @incomeReceived.ToString("0")</h3>
+                            </div>
+                            <div class="stat-icon bg-white text-danger">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                        </div>
+                        <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.3);">
+                            <div class="progress-bar bg-white" role="progressbar" style="width: 100%"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            @* pending money card*@
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="text-muted text-uppercase fw-bolder mb-1">Pending Payment</h6>
+                                <h3 class="fw-bolder text-danger mb-0"> Rs. @incomePending.ToString("0")</h3>
+                            </div>
+                            <div class="stat-icon bg-light-red">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: @pendingPct%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted">Awaiting</small>
+                            <small class="text-danger fw-bold">@pendingPct%</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* order fulfillment card  *@
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="text-muted text-uppercase fw-bolder mb-1">Orders Fulfilled</h6>
+                                <h3 class="fw-bolder text-danger mb-0">@completedCount / @total</h3>
+                            </div>
+                            <div class="stat-icon bg-light-red">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: @completedPct%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted">Completion Rate</small>
+                            <small class="text-danger fw-bold">@completedPct%</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* User ka batai ga  *@
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h6 class="text-muted text-uppercase fw-bolder mb-1">Users Registered</h6>
+                                <h3 class="fw-bolder text-danger mb-0">@usersCount</h3>
+                            </div>
+                            <div class="stat-icon bg-light-red">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                        </div>
+
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"></div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-2">
+                            <small class="text-muted">Total Accounts</small>
+                            <small class="text-danger fw-bold">Joined</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+  
+        @* chart *@
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-white border-bottom-0 pt-4 px-4">
+                        <h5 class="fw-bold mb-0 text-dark">Weekly Collection Report</h5>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <canvas id="incomeChart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 border-0 bg-danger text-white text-center p-3">
+                <div class="card-body d-flex flex-column justify-content-center align-items-center">
+
+                    <div class="bg-white text-danger rounded-circle d-flex align-items-center justify-content-center mb-3 shadow"
+                         style="width: 60px; height: 60px;">
+                        <i class="fas fa-bullseye fa-2x"></i>
+                    </div>
+
+                    <h5 class="text-white-50 text-uppercase mb-1">Monthly Goal</h5>
+
+                    <h1 class="fw-bold text-white display-5 mb-0">Rs. @(ViewBag.MonthlyTarget / 1000)k</h1>
+
+                    <p class="mb-3 text-white-50" style="font-size: 0.9rem;">
+                        Achieved: <span class="text-white fw-bold">Rs. @ViewBag.MonthlyRevenue.ToString("0")</span>
+                    </p>
+
+                    <div class="progress w-100 bg-white bg-opacity-25" style="height: 10px; border-radius: 20px;">
+                        <div class="progress-bar bg-white"
+                             role="progressbar"
+                             style="width: @ViewBag.TargetPercentage%; border-radius: 20px;"
+                             aria-valuenow="@ViewBag.TargetPercentage"
+                             aria-valuemin="0"
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+
+                    <small class="mt-2 text-white fw-bold">@ViewBag.TargetPercentage% Completed</small>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="theme-title">Customer Orders</h2>
+            <div class="stats-box">Total: @Model.Count()</div>
+        </div>
+        @* Customer Order table *@
+        <div class="card order-card shadow-sm">
+            <div class="card-body p-0">
+                <table class="table custom-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Order Status</th>
+                            <th>Payment</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="order-id">#@item.OrderId</td>
+                                <td class="customer-name">
+                                    <i class="fas fa-user-circle me-1 text-muted"></i>
+                                    @(item.User != null ? item.User.FullName : "N/A")
+                                </td>
+                                <td>@item.OrderDate.ToShortDateString()</td>
+                            <td class="fw-bold">  Rs. @item.TotalAmount.ToString("0")</td>
+                                <td>
+                                    @if (item.Status == "Pending")
+                                    {
+                                        <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-stop-circle me-1"></i> Pending
+                                    </span>
+                                    }
+                                    else if (item.Status == "Processing")
+                                    {
+                                        <span class="badge bg-primary">
+                                        <i class="fas fa-clock me-1"></i>Processing
+                                    </span>
+                                    }
+                                    else if (item.Status == "Out For Delivery") 
+                                    {
+                                        <span class="badge bg-info text-dark">
+                                            <i class="fas fa-truck-loading me-1"></i> Out For Delivery
+                                        </span>
+                                    }
+                                    else if (item.Status == "Delivered" || item.Status == "Completed")
+                                    {
+                                    <span class="badge bg-success"><i class="fas fa-truck me-1"></i>@item.Status</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">@item.Status</span>
+                                    }
+                                </td>
+                                <td>
+                                    @* Payment status linked to Order Status *@
+                                    @if (item.Status.ToString() == "Delivered" || item.Status == "Completed")
+                                    {
+                                        <span class="badge-custom badge-paid"><i class="fas fa-check-circle"></i> Paid</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge-custom badge-pending"><i class="fas fa-clock"></i> Unpaid</span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button type="button"
+                                                class="pl-action-btn edit-btn"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editOrderModal"
+                                                data-id="@item.OrderId"
+                                                data-status="@item.Status">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+
+                                        <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.OrderId" class="pl-action-btn view-btn" title="View Invoice">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+   @* Update Order Modal *@
+<div class="modal fade" id="editOrderModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+
+            <div class="modal-header bg-danger ">
+                <h5 class="modal-title text-white"><i class="fas fa-edit me-2"></i>Update Order</h5>
+                <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form asp-action="UpdateOrder" method="post">
+                <div class="modal-body p-4">
+
+                    <input type="hidden" name="id" id="modalOrderId" />
+
+                    <div class="mb-3 text-center">
+                        <span class="badge bg-light text-dark border p-2 fs-6">
+                            Order #<span id="displayOrderId"></span>
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Select Order Status</label>
+                        <select name="status" id="modalStatus" class="form-select form-select-lg">
+                            <option value="Pending">Pending</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Out For Delivery">Out For Delivery</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                    </div>
+
+                    <div class="alert alert-info d-flex align-items-center" role="alert">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <small>Selecting <b>Delivered</b> will automatically mark this order as <b>PAID</b>.</small>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer bg-light">
+                    <button type="button" class="pl-btn-red" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="pl-btn-green">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@* modal script *@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var editModalEl = document.getElementById('editOrderModal');
+        // Modal ko body mein move karna zaroori hai taake wo table k upar aye
+        document.body.appendChild(editModalEl);
+
+        editModalEl.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var orderId = button.getAttribute('data-id');
+            var currentStatus = button.getAttribute('data-status');
+
+            editModalEl.querySelector('#modalOrderId').value = orderId;
+            editModalEl.querySelector('#displayOrderId').textContent = orderId;
+            editModalEl.querySelector('#modalStatus').value = currentStatus;
+        });
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('incomeChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line', // Line graph banega
+        data: {
+            // Controller se data yahan aa raha hai
+            labels: @Html.Raw(Json.Serialize(ViewBag.ChartDates)),
+            datasets: [{
+                label: 'Daily Collection (Rs.)',
+                data: @Html.Raw(Json.Serialize(ViewBag.ChartValues)),
+                borderColor: '#d32f2f', // Red Line
+                backgroundColor: 'rgba(211, 47, 47, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4 // Thora curve dega
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } }
+        }
+    });
+</script>

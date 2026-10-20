@@ -1,0 +1,391 @@
+﻿@model IEnumerable<Laundry.Models.ServiceItem>
+@{
+    ViewData["Title"] = "Book Laundry - Blink It";
+
+    // Model ya ViewBag dono se safe list mapping
+    var items = (Model ?? ViewBag.ServiceItems as IEnumerable<Laundry.Models.ServiceItem>)?.ToList() ?? new List<Laundry.Models.ServiceItem>();
+
+    // 1. Weight Wise Card Fix (Matches "kg" or "wash & fold" or "weight")
+    var weightItem = items.FirstOrDefault(x => x.ItemName.ToLower().Contains("kg")
+                                            || x.ItemName.ToLower().Contains("weight")
+                                            || x.ItemName.ToLower().Contains("wash")) ?? items.FirstOrDefault();
+
+    // 2. Monthly Package Fix (Matches "month", "student", "40 clothes")
+    var pkgMonthly = items.FirstOrDefault(x => x.ItemName.ToLower().Contains("month")
+                                             || x.ItemName.ToLower().Contains("student")
+                                             || x.ItemName.ToLower().Contains("40"));
+
+    // 3. Yearly Package Fix (Matches "year", "premium", "vip")
+    var pkgYearly = items.FirstOrDefault(x => x.ItemName.ToLower().Contains("year")
+                                            || x.ItemName.ToLower().Contains("premium")
+                                            || x.ItemName.ToLower().Contains("vip"));
+
+    // 4. Individual List Items (Exclude Cards items so they don't duplicate)
+    var packageIds = new List<int>();
+    if (weightItem != null) packageIds.Add(weightItem.ItemId);
+    if (pkgMonthly != null) packageIds.Add(pkgMonthly.ItemId);
+    if (pkgYearly != null) packageIds.Add(pkgYearly.ItemId);
+
+    var pieceItems = items.Where(x => !packageIds.Contains(x.ItemId)).ToList();
+}
+
+<style>
+    .pricing-card {
+        transition: transform 0.3s;
+        border: none;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+    .card-top-border {
+        height: 5px;
+        width: 100%;
+    }
+
+    .price-tag {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .btn-circle-minus {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        background: darkgrey;
+        color: azure;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .card-btn {
+        width: 100%;
+        padding: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 0 0 10px 10px;
+        border: none;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Hero Start -->
+<div class="ab-hero-section">
+    <img src="~/website/img/hero/pricee.jpg" alt="Background" class="ab-bg-img">
+    <div class="ab-dark-overlay"></div>
+    <div class="ab-hero-bubbles">
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+    </div>
+
+    <div class="container ab-content-layer">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="ab-hero-text">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center bg-transparent p-0 m-0">
+                            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Pricing</li>
+                        </ol>
+                    </nav>
+                    <h2>Pricing</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+
+<div class="container mt-4 mb-5" style="max-width: 900px;">
+
+    <section class="pricing-area">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center">
+                        <span class="element" style="color:#ff2e4d; font-weight:600;">[ Pricing Plans ]</span>
+                        <h2 style="font-weight:800;">Choose The Plan That Fits You !</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+
+                <!-- 1. Wash & Fold Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pr-card">
+                        <div class="pr-icon-wrapper">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+
+                        <h3 class="pr-title">Wash & Fold</h3>
+                        <span class="pr-subtitle">Pay Per Weight</span>
+
+                        <ul class="pr-features">
+                            <li>Minimum Order: <strong>2 KG</strong></li>
+                            <li>4 Pair Button Down Shirts</li>
+                            <li>2 Pair Of Jeans</li>
+                            <li>2 Pair Of Shorts</li>
+                            <li>2 Towel</li>
+                            <li>2 BedSheets</li>
+                            <li>Free Pickup & Delivery</li>
+                        </ul>
+
+                        <form asp-action="Create" method="post" class="flex-grow-1 d-flex flex-column">
+                            <!-- Safe DB ItemId mapping -->
+                            <input type="hidden" name="ItemIds" value="@(weightItem?.ItemId ?? 0)" />
+
+                            <div class="mt-auto">
+                                <div class="weight-ctrl-box">
+                                    <button type="button" onclick="updateWeightPrice(-1)" class="btn-circle-custom">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+
+                                    <!-- Default 2 KG Limit -->
+                                    <input type="text" name="Quantities" id="weightQty" value="2" class="qty-input-custom card-qty" readonly>
+
+                                    <button type="button" onclick="updateWeightPrice(1)" class="btn-circle-custom">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+
+                                <div class="pr-price-box d-flex flex-column align-items-center">
+                                    <div>
+                                        <span class="pr-currency">Rs.</span>
+                                        <!-- Base Price = 500/KG, 2 KG Initial Display = 1000 -->
+                                        <span class="pr-price" id="weightPriceDisplay" data-base-price="@((weightItem != null && weightItem.Price > 0 ? weightItem.Price : 500).ToString("0"))">
+                                            @(((weightItem != null && weightItem.Price > 0 ? weightItem.Price : 500) * 2).ToString("0"))
+                                        </span>
+                                    </div>
+                                    <div style="font-size: 13px; color: #6c757d; font-weight: 600; margin-top: -5px;">
+                                        (@((weightItem != null && weightItem.Price > 0 ? weightItem.Price : 500).ToString("0")) / KG - Min 2 KG)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pr-btn-container">
+                                <button type="submit" class="pr-btn">Order Weight Wise</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2. Student Package Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pr-card">
+                        <div class="pr-icon-wrapper">
+                            <i class="fa-solid fa-shirt"></i>
+                        </div>
+
+                        <h3 class="pr-title">Student Package</h3>
+                        <span class="pr-subtitle">40 Clothes Per Month</span>
+
+                        <ul class="pr-features">
+                            <li>Valid for <strong>30 Days</strong></li>
+                            <li>6 T-Shirts</li>
+                            <li>6 Button Down Shirts</li>
+                            <li>10 Pair Of Cords</li>
+                            <li>4 Towels</li>
+                            <li>2 Set Of Sheets</li>
+                            <li>5 Pair Of Jeans</li>
+                            <li>4 Pair Of Shorts</li>
+                            <li>1 Pair of Vest</li>
+                        </ul>
+
+                        <div class="pr-price-box">
+                            <span class="pr-currency">Rs.</span>
+                            <span class="pr-price">@((pkgMonthly != null && pkgMonthly.Price > 0 ? pkgMonthly.Price : 4000).ToString("0"))</span>
+                        </div>
+
+                        <form asp-action="Create" method="post">
+                            <input type="hidden" name="ItemIds" value="@(pkgMonthly?.ItemId ?? 0)" />
+                            <input type="hidden" name="Quantities" value="1" />
+
+                            <div class="pr-btn-container">
+                                <button type="submit" class="pr-btn">Buy Monthly Plan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 3. Premium Package Card -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pr-card">
+                        <div class="pr-icon-wrapper">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <h3 class="pr-title">Premium Package</h3>
+                        <span class="pr-subtitle">Unlimited Ironing</span>
+
+                        <ul class="pr-features">
+                            <li>Valid for <strong>1 Year</strong></li>
+                            <li>Unlimited Steam Ironing</li>
+                            <li>Priority Delivery (24 Hours)</li>
+                            <li>Stain Removal Included</li>
+                            <li>Premium Detergents</li>
+                        </ul>
+
+                        <div class="pr-price-box">
+                            <span class="pr-currency">Rs.</span>
+                            <span class="pr-price">@((pkgYearly != null && pkgYearly.Price > 0 ? pkgYearly.Price : 22000).ToString("0"))</span>
+                        </div>
+
+                        <form asp-action="Create" method="post">
+                            <input type="hidden" name="ItemIds" value="@(pkgYearly?.ItemId ?? 0)" />
+                            <input type="hidden" name="Quantities" value="1" />
+
+                            <div class="pr-btn-container">
+                                <button type="submit" class="pr-btn">Buy Yearly Plan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Individual Items Section -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-xl-7 col-lg-8">
+            <div class="section-tittle text-center">
+                <span class="element" style="color:#ff2e4d; font-weight:600;">[ OR SELECT INDIVIDUAL ITEMS ]</span>
+                <h2 style="font-weight:800;">Choose Your Items</h2>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="Create" method="post" onsubmit="return validateOrder()">
+
+        <ul class="list-group shadow-sm">
+            @if (pieceItems != null && pieceItems.Any())
+            {
+                @foreach (var item in pieceItems)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <div class="d-flex align-items-center">
+
+                            <div class="bg-light text-danger rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm"
+                                 style="width: 60px; height: 60px; font-size: 30px;">
+                                <i class="fas fa-soap"></i>
+                            </div>
+
+                            <div class="flex-grow-1">
+                                <h5 class="mb-0 fw-bolder text-dark">@item.ItemName</h5>
+                                <div class="text-danger fw-bold" style="font-size: 1.4rem;">
+                                    Rs. @item.Price.ToString("0")
+                                </div>
+
+                                <!-- Correct hidden inputs for Array Binding -->
+                                <input type="hidden" name="ItemIds" value="@item.ItemId" />
+                                <input type="hidden" class="price" value="@item.Price.ToString("0")" />
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2">
+                            <button type="button" onclick="changeQty(this, -1)" class="btn-circle-minus" style="width: 35px; height: 35px;">
+                                <i class="fa fa-minus"></i>
+                            </button>
+
+                            <input type="text" name="Quantities" value="0" class="qty" readonly
+                                   style="width: 40px; text-align: center; border: none; font-weight: bold; font-size: 18px; background: transparent;">
+
+                            <button type="button" onclick="changeQty(this, 1)" class="btn-circle-custom" style="width: 35px; height: 35px;">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+
+        <div id="cartError" class="alert alert-danger text-center d-none mt-3" style="font-weight:500; font-size:medium;">
+            <i class="fa fa-exclamation-triangle"></i> You Haven't Selected Any Items.
+        </div>
+
+        <div class="card mt-3 border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h4 style="color:red;">Total: <span class="text-danger fw-bold">Rs. <span id="totalAmount">0</span></span></h4>
+            </div>
+        </div>
+
+        <button type="submit" class="pl-btn-red w-100 mt-2 btn-lg">Complete Your Booking</button>
+
+    </form>
+</div>
+
+<script>
+    // 1. Weight Wise Price Calculator (Minimum 2 KG Limit)
+    function updateWeightPrice(change) {
+        var qtyInput = document.getElementById("weightQty");
+        var priceDisplay = document.getElementById("weightPriceDisplay");
+        var basePrice = parseFloat(priceDisplay.getAttribute("data-base-price")) || 500;
+
+        var currentQty = parseInt(qtyInput.value) || 2;
+        var newQty = currentQty + change;
+
+        // Minimum 2 KG Limit Check
+        if (newQty < 2) {
+            newQty = 2;
+        }
+
+        qtyInput.value = newQty;
+        var newTotal = newQty * basePrice;
+        priceDisplay.innerText = newTotal;
+    }
+
+    // 2. Individual Items Quantity Adjuster
+    function changeQty(btn, amount) {
+        var input = btn.parentElement.querySelector('.qty');
+        var newVal = (parseInt(input.value) || 0) + amount;
+        if (newVal < 0) newVal = 0;
+        input.value = newVal;
+        updateTotal();
+    }
+
+    // 3. Dynamic Total Calculator
+    function updateTotal() {
+        var total = 0;
+        var items = document.querySelectorAll('.list-group-item');
+        items.forEach(function(item) {
+            var price = parseFloat(item.querySelector('.price').value) || 0;
+            var qty = parseInt(item.querySelector('.qty').value) || 0;
+            total += price * qty;
+        });
+        document.getElementById('totalAmount').innerText = total;
+        if (total > 0) {
+            document.getElementById('cartError').classList.add('d-none');
+        }
+    }
+
+    // 4. Submit Validation
+    function validateOrder() {
+        var total = parseInt(document.getElementById('totalAmount').innerText) || 0;
+        if (total === 0) {
+            document.getElementById('cartError').classList.remove('d-none');
+            return false;
+        }
+        return true;
+    }
+</script>

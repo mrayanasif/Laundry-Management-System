@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Laundry.Models.Order>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] ="Customer Invoices - BlinkIt";
+}
+@* specific user ki invoice *@
+<div class="container py-4">
+
+    <a asp-controller="Admin" asp-action="InvoiceUsers" class="pl-btn-red">
+        <i class="fas fa-arrow-left"></i> Back to Customers
+    </a>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-dark">Invoices for: <span class="text-danger">@ViewBag.UserName</span></h3>
+        <span class="rw-stats-box">Total Orders: @Model.Count()</span>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead style="background-color:red;color:white;">
+                    <tr>
+                        <th class="ps-4">Order ID</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Total Amount</th>
+                        <th class="text-center">Print Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-bold">#@order.OrderId</td>
+                            <td>@order.OrderDate.ToString("dd MMM yyyy")</td>
+                            <td>
+                                @if ( order.Status == "Delivered")
+                                {
+                                    <span class="badge bg-success">@order.Status</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">@order.Status</span>
+                                }
+                            </td>
+                            <td class="fw-bold text-danger">  Rs. @order.TotalAmount.ToString("0")</td>
+                            <td class="text-center">
+                                <a asp-action="Details" asp-route-id="@order.OrderId" class="pl-btn-red">
+                                    <i class="fas fa-file-invoice me-2"></i>Generate Invoice
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

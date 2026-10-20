@@ -1,0 +1,566 @@
+﻿/* ================= Admin Footer ================= */
+/* Footer Styling (Red & White Theme) */
+.admin-footer {
+    background-color: #ffffff;
+    border-top: 3px solid #d32f2f; /* Red Top Border */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.05); /* Halka sa shadow upar ki taraf */
+    width: 100%;
+    position: relative; /* Fixed nahi, Relative rakha hai */
+    z-index: 1000;
+}
+
+/* Links Styling */
+.footer-link {
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+    .footer-link:hover {
+        color: #d32f2f; /* Hover par Red */
+    }
+
+.copyright-text, .version-text {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Heart Animation */
+.pulse {
+    animation: pulse-animation 1.5s infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Sidebar collapsed */
+body.sidebar-collapsed .admin-footer {
+    margin-left: 80px;
+}
+
+/* Mobile */
+@media (max-width: 992px) {
+    .admin-footer {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+/*Rendor body ki css*/
+.nxl-main-content {
+    padding-top: 2px; /* header height */
+}
+
+/*Customer Order kai css*/
+#blink-orders-container {
+    background-color: #ffffff;
+}
+
+    #blink-orders-container .theme-title {
+        color: #e74c3c;
+        font-weight: 800;
+        text-transform: uppercase;
+        border-left: 6px solid #e74c3c;
+        padding-left: 15px;
+    }
+
+    #blink-orders-container .stats-box {
+        background: #f8d7da;
+        color: #c0392b;
+        padding: 8px 20px;
+        border-radius: 50px;
+        font-weight: 700;
+    }
+
+    /* Table Header */
+    #blink-orders-container .custom-table thead {
+        background-color: #e74c3c !important;
+        color: white !important;
+    }
+
+    #blink-orders-container .custom-table th {
+        padding: 18px 15px !important;
+        font-size: 0.85rem;
+        border: none !important;
+    }
+
+    /* Action Buttons Styling */
+    #blink-orders-container .action-btn {
+        font-size: 1.1rem;
+        margin: 0 8px;
+        transition: 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #blink-orders-container .edit-icon {
+        color: #e74c3c; /* Red for Edit */
+    }
+
+        #blink-orders-container .edit-icon:hover {
+            color: #c0392b;
+            transform: scale(1.2);
+        }
+
+    #blink-orders-container .view-icon {
+        color: #34495e; /* Dark Blue/Gray for View */
+    }
+
+        #blink-orders-container .view-icon:hover {
+            color: #2c3e50;
+            transform: scale(1.2);
+        }
+
+    /* Badges */
+    #blink-orders-container .badge-custom {
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    #blink-orders-container .badge-paid {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    #blink-orders-container .badge-pending {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    /* Table Row Hover */
+    #blink-orders-container .custom-table tbody tr:hover {
+        background-color: #fffafa !important;
+    }
+/* =========================================
+   RED & WHITE THEME - USERS TABLE
+   Prefix: rw- (to avoid conflicts)
+   ========================================= */
+
+/* Main Container Wrapper */
+.rw-wrapper {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Light background for contrast */
+}
+
+/* Page Title */
+.rw-page-title {
+    color: #ce1212; /* Deep Red */
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Stats Counter Box (Red BG, White Text) */
+.rw-counter-box {
+    background-color: #ce1212;
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 8px rgba(206, 18, 18, 0.3);
+}
+
+/* Card Container */
+.rw-card {
+    background: #ffffff;
+    border: none;
+    border-top: 5px solid #ce1212; /* Red Top Line */
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    overflow: hidden; /* Rounded corners fix */
+}
+
+/* Table General Styles */
+.rw-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+    /* Table Header (Red BG) */
+    .rw-table thead {
+        background-color: #ce1212;
+        color: #ffffff;
+    }
+
+    .rw-table th {
+        padding: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        border: none;
+    }
+
+    /* Table Body */
+    .rw-table td {
+        padding: 16px;
+        vertical-align: middle;
+        border-bottom: 1px solid #eee;
+        color: #333;
+        font-size: 0.95rem;
+    }
+
+    /* Hover Effect (Light Pink) */
+    .rw-table tbody tr:hover {
+        background-color: #fff0f0; /* Very light red/pink */
+    }
+
+/* User Icon Styling */
+.rw-icon-user {
+    color: #ce1212;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+/* Links (Email/Phone) */
+.rw-link {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+    .rw-link:hover {
+        color: #ce1212;
+        text-decoration: underline;
+    }
+
+/* Action Buttons */
+.rw-btn-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #ffcccc;
+    color: #ce1212;
+    transition: all 0.3s ease;
+}
+
+    .rw-btn-delete:hover {
+        background-color: #ce1212;
+        color: #ffffff;
+        border-color: #ce1212;
+        transform: scale(1.1); /* Thoda sa bada hoga hover pe */
+    }
+/* =========================================
+   RED & WHITE THEME - USERS TABLE
+   Prefix: rw- (to avoid conflicts)
+   ========================================= */
+
+/* --- Admin Panel Red & White Theme Table --- */
+
+/* Table Card ka border aur shadow */
+.rw-card {
+    border: 1px solid #d32f2f !important;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table Header: Red Background & White Text */
+.rw-table thead tr {
+    background-color: #d32f2f !important;
+}
+
+.rw-table thead th {
+    color: #ffffff !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 12px 15px !important;
+    border: none !important;
+}
+
+/* User Name: Bold and Red */
+.user-name-highlight {
+    color: #d32f2f !important;
+    font-weight: 800 !important;
+    font-size: 1.05rem;
+}
+
+/* Table Rows hover effect */
+.rw-table tbody tr:hover {
+    background-color: #fff5f5; /* Bohat halka red shade hover par */
+}
+
+/* Action Button: Red */
+.rw-btn-delete {
+    color: #d32f2f;
+    border: 1px solid #d32f2f;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+    .rw-btn-delete:hover {
+        background-color: #d32f2f;
+        color: #fff;
+    }
+
+/* Stats Box Red Design */
+.rw-stats-box {
+    background-color: #d32f2f;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Add User Button Styling */
+.rw-btn-add {
+    background-color: #d32f2f;
+    color: #ffffff !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid #d32f2f;
+    box-shadow: 0 2px 5px rgba(211, 47, 47, 0.2);
+}
+
+    .rw-btn-add:hover {
+        background-color: white;
+        color: darkred !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .rw-btn-add i {
+        font-size: 0.9rem;
+    }
+
+.rw-btn-delete {
+    background: none;
+    border: 1px solid #d32f2f;
+    color: #d32f2f;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .rw-btn-delete:hover {
+        background-color: #d32f2f;
+        color: white;
+    }
+
+/* Modal ko har cheez ke upar dikhane ke liye */
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
+.modal {
+    z-index: 1050 !important;
+}
+.stat-card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.bg-light-red {
+    background-color: #fde8e8;
+    color: #d32f2f;
+}   
+/* Agar screen freeze ho jaye toh clickable banane ke liye */
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0 !important;
+}
+
+.pl-btn-red {
+    position: relative;
+    background-color: transparent; /* Background shuru mein transparent rakhein */
+    color: #ff2e4d; /* Text color shuru mein Red */
+    padding: 12px 30px;
+    font-weight: 600;
+    border: 2px solid #ff2e4d; /* Red Border */
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden; /* Taake transition bahar na nikle */
+    z-index: 1;
+    transition: color 0.4s ease; /* Text color change hone ki timing */
+}
+
+/* Yeh woh "Red Box" hai jo peeche se slide hoga */
+/* --- Big Button with Slide Effect --- */
+
+.pl-btn-red {
+    position: relative;
+    background-color: transparent;
+    color: #ff2e4d;
+    /* SIZE CHANGES YAHAN HAIN */
+    padding: 10px 10px; /* Size bada kiya (Upar-neeche 18px, Daayein-baayein 45px) */
+    font-size: 12px; /* Font size bada kiya */
+    font-weight: 700; /* Thoda aur bold kiya */
+
+    border: 2px solid #ff2e4d;
+    border-radius: 5px; /* Konay thoday gol kiye */
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease;
+    text-transform: uppercase; /* Text ko CAPITAL mein dikhayega (Optional) */
+    letter-spacing: 1px; /* Aksharon ke beech thodi jagah */
+}
+
+    /* Slide Effect Box (Same as before) */
+    .pl-btn-red::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: #ff2e4d;
+        transition: all 0.4s ease;
+        z-index: -1;
+    }
+
+    /* Hover State */
+    .pl-btn-red:hover {
+        color: #ffffff !important;
+    }
+
+        .pl-btn-red:hover::before {
+            left: 0;
+        }
+
+/*Update Button */
+.pl-btn-green {
+    position: relative;
+    background-color: transparent;
+    color: white; /* Text color shuru mein Red */
+    padding: 12px 30px;
+    font-weight: 600;
+    border: 2px solid #ff2e4d; /* Red Border */
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden; /* Taake transition bahar na nikle */
+    z-index: 1;
+    transition: color 0.4s ease; /* Text color change hone ki timing */
+}
+
+/* Yeh woh "Red Box" hai jo peeche se slide hoga */
+/* --- Big Button with Slide Effect --- */
+
+.pl-btn-green {
+    position: relative;
+    background-color: transparent;
+    color: green;
+    padding: 10px 10px;
+    font-size: 12px; 
+    font-weight: 700;
+
+    border: 2px solid green;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease;
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+    /* Slide Effect Box (Same as before) */
+    .pl-btn-green::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: darkgreen;
+        transition: all 0.4s ease;
+        z-index: -1;
+    }
+
+    /* Hover State */
+    .pl-btn-green:hover {
+        color: white !important;
+    }
+
+        .pl-btn-green:hover::before {
+            left: 0;
+        }
+
+/* Action Buttons Styling */
+.pl-action-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+    .edit-btn:hover {
+        background-color: #2e7d32;
+        color: white;
+    }
+/*    view Button    */
+/* Action Buttons Styling */
+
+
+.view-btn {
+    background-color: lightcoral;
+    color: darkred;
+    border: 1px solid #c8e6c9;
+}
+
+    .view-btn:hover {
+        background-color: darkred;
+        color: white;
+    }
+
+.orderlist-text {
+    color: #e74c3c;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-left: 6px solid #e74c3c;
+    padding-left: 15px;
+}

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Login - BlinkIt Laundry";
+}
+<!--? Hero Start -->
+<div class="ab-hero-section">
+
+    <img src="~/website/img/gallery/projects-img1.png" alt="Background" class="ab-bg-img">
+
+    <div class="ab-dark-overlay"></div>
+
+    <div class="ab-hero-bubbles">
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+    </div>
+
+    <div class="container ab-content-layer">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="ab-hero-text">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center bg-transparent p-0 m-0">
+                            <li class="breadcrumb-item"><a href="/Home">home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Sign In</li>
+                        </ol>
+                    </nav>
+                    <h2>WELCOME BACK</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+@* Login form section start *@
+<section class="contact-section section-padding">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="section-tittle text-center mb-50">
+                    <h2 style="color:darkred;">Please Login To Your Account</h2>
+                          
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5" style="max-width: 400px;">
+        <h2 class="auth-title">LOGIN</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+        <form asp-action="login" method="post" class="custom-auth-form">
+            <div class="mb-3">
+                <label class="custom-label">Email</label>
+                <input type="email" name="email" placeholder="Enter Your Email" class="custom-input" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="custom-label">Password</label>
+                <input type="password" name="password" placeholder="Enter Your Password" class="custom-input" required />
+            </div>
+
+            <button type="submit" class="pl-btn-green w-100" >Login</button>
+        </form> <br />
+        <div class="mt-3 text-center ">
+
+        <a asp-action="Register"><h3 class="pl-btn-red w-100">Not A User | Sign Up</h3></a>
+
+        </div>
+                  
+
+</div>
+</section>
+@* Login form end *@

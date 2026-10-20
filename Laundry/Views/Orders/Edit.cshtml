@@ -1,0 +1,228 @@
+﻿@model IEnumerable<Laundry.Models.ServiceItem>
+@{
+    ViewData["Title"] = "Update Booking - BlinkIt";
+    var items = (ViewBag.ServiceItems as List<Laundry.Models.ServiceItem>) ?? Model?.ToList() ?? new List<Laundry.Models.ServiceItem>();
+    var existingDetails = ViewBag.ExistingDetails as List<Laundry.Models.OrderDetail>;
+}
+
+<div class="ab-hero-section">
+    <img src="~/website/img/hero/Washing-About.jpg" alt="Background" class="ab-bg-img">
+    <div class="ab-dark-overlay"></div>
+    <div class="ab-hero-bubbles">
+        <span style="--i:11;"></span><span style="--i:12;"></span><span style="--i:24;"></span>
+        <span style="--i:10;"></span><span style="--i:14;"></span><span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+    </div>
+    <div class="container ab-content-layer">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="ab-hero-text">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center bg-transparent p-0 m-0">
+                            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Modify Order</li>
+                        </ol>
+                    </nav>
+                    <h2>Update Booking</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-circle-minus {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        background: darkgrey;
+        color: azure;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .btn-circle-plus {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: none;
+        background: #d32f2f;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .list-group-item {
+        transition: background 0.2s;
+    }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="container mt-5" style="max-width: 800px;">
+
+    <div class="text-center mb-4">
+        <h3 class="fw-bold text-danger">✏️ Edit Order #@ViewBag.OrderId</h3>
+        <p class="text-muted">Modify Your Quantities Below</p>
+    </div>
+
+    <form asp-action="Edit" method="post" onsubmit="return validateEdit()" class="custom-auth-form">
+
+        <input type="hidden" name="id" value="@ViewBag.OrderId" />
+
+        <ul class="list-group shadow-sm">
+            @if (items != null && items.Any())
+            {
+                foreach (var item in items)
+                {
+                    // Existing Quantity Logic
+                    int existingQty = 0;
+                    if (existingDetails != null)
+                    {
+                        var match = existingDetails.FirstOrDefault(d =>
+                        d.ItemId == item.ItemId ||
+                        (d.ItemName != null && d.ItemName.Trim().ToLower() == item.ItemName.Trim().ToLower()));
+
+                        if (match != null) { existingQty = match.Quantity; }
+                    }
+
+                    // Check if item is Wash & Fold / KG based item
+                    bool isKgItem = item.ItemName.ToLower().Contains("kg") ||
+                    item.ItemName.ToLower().Contains("wash") ||
+                    item.ItemName.ToLower().Contains("fold");
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center p-3 border-0 mb-2 shadow-sm rounded">
+                        <div class="d-flex align-items-center">
+
+                            <div class="bg-light text-danger rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm"
+                                 style="width: 50px; height: 50px; font-size: 30px;">
+                                <i class="fas fa-soap"></i>
+                            </div>
+
+                            <div>
+                                <h6 class="mb-0 fw-bolder">
+                                    @item.ItemName
+                                    @if (isKgItem)
+                                    {
+                                        <span class="badge bg-danger ms-1" style="font-size: 10px;">Min 2 KG</span>
+                                    }
+                                </h6>
+                                <div class="text-danger fw-bold" style="font-size: 1.4rem;">
+                                    Rs. @item.Price.ToString("0") @(isKgItem ? "/ KG" : "")
+                                </div>
+
+                                <input type="hidden" name="ItemIds" value="@item.ItemId" />
+                                <input type="hidden" class="price" value="@item.Price" />
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-2">
+                            <button type="button" onclick="changeQty(this, -1)" class="btn-circle-minus">
+                                <i class="fa fa-minus" style="font-size: 10px;"></i>
+                            </button>
+
+                            <input type="text" name="Quantities" value="@existingQty" class="qty" readonly
+                                   data-is-kg="@(isKgItem ? "true" : "false")"
+                                   data-min="@(isKgItem ? 2 : 0)"
+                                   style="width: 40px; text-align: center; border: none; font-weight: bold; font-size: 16px; background: transparent;">
+
+                            <button type="button" onclick="changeQty(this, 1)" class="btn-circle-plus" style="background-color: #d32f2f;">
+                                <i class="fa fa-plus" style="font-size: 10px;"></i>
+                            </button>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+
+        <div id="editError" class="alert alert-danger text-center d-none mt-3" role="alert" style="font-weight:500; font-size:medium;">
+            <i class="fa fa-exclamation-triangle"></i>
+            <strong>Oops!</strong> You Cannot Submit Your Booking Empty (Need To Add At Least One Item) .
+        </div>
+
+        <div class="card mt-4 border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h4 style="color:#d32f2f;">New Total: <span class="text-danger fw-bolder">Rs. <span id="totalAmount">0</span></span></h4>
+                <div class="d-flex gap-2 mt-3 justify-content-center">
+                    <a asp-action="MyOrders" class="pl-btn-green px-5 rounded-pill" style="background:grey; border:none; color:white; padding:10px 20px; text-decoration:none;">Cancel</a>
+                    <button type="submit" class="pl-btn-red px-5 rounded-pill" style="background:#d32f2f; border:none; color:white; padding:10px 20px;">Update Booking</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        updateTotal();
+    });
+
+    function changeQty(btn, amount) {
+        var input = btn.parentElement.querySelector('.qty');
+        var isKgItem = input.getAttribute('data-is-kg') === 'true';
+        var currentVal = parseInt(input.value) || 0;
+        var newVal = currentVal + amount;
+
+        if (isKgItem) {
+            
+            if (currentVal === 0 && amount > 0) {
+                newVal = 2;
+            }
+            else if (amount < 0 && newVal < 2) {
+                
+                newVal = (newVal <= 0) ? 0 : 2;
+            }
+        } else {
+            // Normal items ke liye minimum 0
+            if (newVal < 0) {
+                newVal = 0;
+            }
+        }
+
+        input.value = newVal;
+        updateTotal();
+    }
+
+    function updateTotal() {
+        var total = 0;
+        var items = document.querySelectorAll('.list-group-item');
+
+        items.forEach(function(item) {
+            var priceInput = item.querySelector('.price');
+            var qtyInput = item.querySelector('.qty');
+
+            if (priceInput && qtyInput) {
+                var price = parseFloat(priceInput.value) || 0;
+                var qty = parseInt(qtyInput.value) || 0;
+                total += (price * qty);
+            }
+        });
+
+        document.getElementById('totalAmount').innerText = total;
+
+        if (total > 0) {
+            document.getElementById('editError').classList.add('d-none');
+        }
+    }
+
+    function validateEdit() {
+        var total = parseFloat(document.getElementById('totalAmount').innerText) || 0;
+
+        if (total === 0) {
+            document.getElementById('editError').classList.remove('d-none');
+            return false;
+        }
+        return true;
+    }
+</script>

@@ -1,0 +1,40 @@
+﻿@model Laundry.Models.ServiceItem
+@{
+    ViewData["Title"] = "Create - BlinkIt";
+    Layout = "_AdminLayout";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-0">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0 fw-bold text-white"><i class="fas fa-plus-circle me-2"></i>Add New Item</h4>
+                </div>
+                <div class="card-body p-4">
+
+                    <form asp-action="CreateItem" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Item Name</label>
+                            <input asp-for="ItemName" class="form-control" placeholder="e.g. Mens Fashion.." required />
+                            <span asp-validation-for="ItemName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Price (Rs.)</label>
+                            <input asp-for="Price" type="number" class="form-control" placeholder="e.g. 500" required />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="pl-btn-red">Add to Website</button>
+                            <a asp-controller="Admin" asp-action="ManageItems" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

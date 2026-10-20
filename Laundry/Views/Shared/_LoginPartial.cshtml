@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@if (Context.Session.GetString("UserID") != null)
+{
+    <li>
+        <a href="#">Hi, @Context.Session.GetString("UserName")</a>
+    </li>
+    <li>
+        <a asp-controller="Account" asp-action="Logout" style="color: red;">LOGOUT</a>
+        
+    </li>
+}
+/* Agar User Login NAHI Hai */
+else
+{
+    <li><a asp-controller="Account" asp-action="Login">SIGN IN  </a></li>
+    @* <li><a asp-controller="Account" asp-action="Register">Sign Up</a></li> *@
+   
+}

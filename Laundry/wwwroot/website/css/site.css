@@ -1,0 +1,2184 @@
+﻿
+/* --- ProLaundry Custom Navbar Styles (Prefix: pl-) --- */
+
+:root {
+    --pl-red: #ff2e4d; /* The exact red from your image */
+    --pl-dark: #2a2a2a; /* Dark text */
+    --pl-gray: #666666; /* Light gray text */
+    --pl-border: #f0f0f0; /* Light border */
+}
+/* --- Logo Control Fix --- */
+
+/* 1. Logo Container ko flexible banayein */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%; /* Parent height follow kare */
+}
+
+    /* 2. Image ko control karein taake woh bahar na nikle */
+    .logo img {
+        max-height: 60px; /* Logo ki height fix kar di (Adjust as needed) */
+        width: auto; /* Width apne aap adjust hogi */
+        max-width: 100%; /* Column se bahar nahi jayega */
+        object-fit: contain; /* Image distort nahi hogi */
+        display: block;
+    }
+
+/* 3. Agar Mobile par logo bohot chota lag raha hai to thoda bada karein */
+@media (max-width: 991px) {
+    .logo img {
+        max-height: 50px;
+    }
+}
+/* Container fix to match image padding */
+.pl-container {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+/* 2. Main Navigation Area */
+.pl-header-area {
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Subtle shadow like image */
+}
+
+.pl-bg-white {
+    background-color: #ffffff;
+}
+
+/* Logo Styling to match image text */
+.pl-logo-link {
+    text-decoration: none;
+}
+
+
+
+.pl-logo-icon {
+    color: var(--pl-red);
+    margin-right: 8px;
+    font-size: 24px;
+}
+
+.pl-logo-red {
+    color: var(--pl-red);
+}
+
+.pl-logo-dark {
+    color: var(--pl-dark);
+}
+
+
+/* Menu Links */
+.pl-nav-ul li {
+    margin: 0 15px;
+    list-style: none;
+}
+
+.pl-nav-link {
+    color: var(--pl-dark) !important;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 25px 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+}
+
+    .pl-nav-link i {
+        font-size: 12px;
+        margin-left: 3px;
+        color: #999;
+        transition: color 0.3s ease; /* Icon ke liye bhi smooth transition daal di */
+    }
+
+    /* --- HOVER & ACTIVE EFFECT --- */
+    /* Yahan maine .pl-active add kiya hai */
+    .pl-nav-link:hover,
+    .pl-nav-link.pl-active {
+        color: var(--pl-red) !important;
+    }
+
+        /* Icon bhi Red hona chahiye jab Active ho */
+        .pl-nav-link:hover i,
+        .pl-nav-link.pl-active i {
+            color: var(--pl-red);
+        }
+
+/* --- Login Partial Styling --- */
+.pl-login-item, .pl-login-wrapper {
+    list-style: none;
+    display: inline-block;
+}
+
+    /* partial ke andar jo <a> tags hain unko style karne ke liye */
+    /* --- Login Partial Alignment Fix --- */
+
+    /* Wrapper ke andar jo bhi List (ul) hai usay horizontal karo */
+    .pl-login-wrapper ul {
+        display: flex !important; /* Force Horizontal */
+        align-items: center;
+        list-style: none; /* Bullets hatao */
+        margin: 0;
+        padding: 0;
+        gap: 20px; /* Login aur Register ke beech gap */
+    }
+
+    /* --- Login/Register Spacing Fix --- */
+
+    /* 1. List Items ke beech faasla (gap) */
+    .pl-login-wrapper li {
+        display: inline-block; /* Taake woh ek line mein rahein */
+        margin-right: 20px; /* Har link ke baad 20px ka gap */
+    }
+
+        /* Aakhri item ke baad gap ki zaroorat nahi */
+        .pl-login-wrapper li:last-child {
+            margin-right: 0;
+        }
+
+    /* 2. Links ki thodi styling taake saaf nazar aayein */
+    .pl-login-wrapper a {
+        text-decoration: none;
+        font-weight: 600;
+        color: #2a2a2a; /* Dark grey color */
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+        .pl-login-wrapper a:hover {
+            color: #ff2e4d; /* Hover par Red */
+        }
+
+/* Mobile par gap dene ke liye */
+@media (max-width: 991px) {
+    .pl-login-wrapper {
+        margin-bottom: 20px;
+        display: block;
+    }
+}
+
+/* 3. Right Side Actions (Cart & Button) */
+.pl-header-right {
+    gap: 30px;
+}
+
+/* Cart Icon */
+.pl-cart-box {
+    position: relative;
+}
+
+.pl-cart-icon {
+    font-size: 22px;
+    color: var(--pl-dark);
+    text-decoration: none;
+}
+
+.pl-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: var(--pl-red);
+    color: white;
+    font-size: 11px;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* Schedule Button */
+/* --- Button Slide Transition Effect --- */
+
+.pl-btn-red {
+    position: relative;
+    background-color: transparent; /* Background shuru mein transparent rakhein */
+    color: #ff2e4d; /* Text color shuru mein Red */
+    padding: 12px 30px;
+    font-weight: 600;
+    border: 2px solid #ff2e4d; /* Red Border */
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden; /* Taake transition bahar na nikle */
+    z-index: 1;
+    transition: color 0.4s ease; /* Text color change hone ki timing */
+}
+
+    /* Yeh woh "Red Box" hai jo peeche se slide hoga */
+/* --- Big Button with Slide Effect --- */
+
+.pl-btn-red {
+    position: relative;
+    background-color: transparent;
+    color: #ff2e4d;
+    /* SIZE CHANGES YAHAN HAIN */
+    padding: 10px 10px; /* Size bada kiya (Upar-neeche 18px, Daayein-baayein 45px) */
+    font-size: 12px; /* Font size bada kiya */
+    font-weight: 700; /* Thoda aur bold kiya */
+
+    border: 2px solid #ff2e4d;
+    border-radius: 5px; /* Konay thoday gol kiye */
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease;
+    text-transform: uppercase; /* Text ko CAPITAL mein dikhayega (Optional) */
+    letter-spacing: 1px; /* Aksharon ke beech thodi jagah */
+}
+
+    /* Slide Effect Box (Same as before) */
+    .pl-btn-red::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: #ff2e4d;
+        transition: all 0.4s ease;
+        z-index: -1;
+    }
+
+    /* Hover State */
+    .pl-btn-red:hover {
+        color: #ffffff !important;
+    }
+
+        .pl-btn-red:hover::before {
+            left: 0;
+        }
+
+/*Update Button */
+.pl-btn-green {
+    position: relative;
+    background-color: transparent;   
+color: white; /* Text color shuru mein Red */
+padding: 12px 30px;
+font-weight: 600;
+border: 2px solid #ff2e4d; /* Red Border */
+border-radius: 4px;
+text-decoration: none;
+display: inline-block;
+overflow: hidden; /* Taake transition bahar na nikle */
+z-index: 1;
+transition: color 0.4s ease; /* Text color change hone ki timing */
+}
+
+/* Yeh woh "Red Box" hai jo peeche se slide hoga */
+/* --- Big Button with Slide Effect --- */
+
+.pl-btn-green {
+    position: relative;
+    background-color: transparent;
+    color:green;
+    /* SIZE CHANGES YAHAN HAIN */
+    padding: 10px 10px; /* Size bada kiya (Upar-neeche 18px, Daayein-baayein 45px) */
+    font-size: 12px; /* Font size bada kiya */
+    font-weight: 700; /* Thoda aur bold kiya */
+
+    border: 2px solid green;
+    border-radius: 5px; /* Konay thoday gol kiye */
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.4s ease;
+    text-transform: uppercase; /* Text ko CAPITAL mein dikhayega (Optional) */
+    letter-spacing: 1px; /* gab bw words ke beech thodi jagah */
+}
+
+    /* Slide Effect Box (Same as before) */
+    .pl-btn-green::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: darkgreen;
+        transition: all 0.4s ease;
+        z-index: -1;
+    }
+
+    /* Hover State */
+    .pl-btn-green:hover {
+        color: white !important;
+    }
+
+        .pl-btn-green:hover::before {
+            left: 0;
+        }
+
+
+
+
+
+
+/* --- About Section Styles --- */
+
+.pl-about-section {
+    background-color: #fff;
+    padding: 80px 0;
+}
+
+/* Image Wrapper & Badge */
+.pl-img-wrapper {
+    position: relative;
+    padding-right: 20px; /* Space for the badge sticking out */
+    padding-bottom: 20px;
+}
+
+.pl-experience-badge {
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    width: 140px;
+    height: 140px;
+    background-color: #ff2e4d; /* Your Red Brand Color */
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 5px solid #fff; /* White border ring */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    z-index: 2;
+}
+
+    .pl-experience-badge .pl-years {
+        font-size: 42px;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .pl-experience-badge .pl-text {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+/* Text Content */
+.pl-sub-title {
+    color: #ff2e4d;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.pl-main-title {
+    font-size: 40px;
+    font-weight: 800;
+    color: #2a2a2a;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.pl-desc-text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Checkmark List */
+.pl-check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .pl-check-list li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: #444;
+        font-size: 15px;
+    }
+
+        .pl-check-list li::before {
+            content: "\f00c"; /* FontAwesome Check Icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #ff2e4d;
+        }
+
+/* Phone Call Box */
+.pl-call-box {
+    text-align: center;
+    padding-left: 20px;
+    border-left: 1px solid #eee; /* Divider line */
+}
+
+.pl-call-icon {
+    color: #ff2e4d;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.pl-call-text span {
+    display: block;
+    font-size: 13px;
+    color: #666;
+}
+
+.pl-call-text h4 {
+    color: #2a2a2a;
+    font-weight: 800;
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Bottom Features Row */
+.pl-divider {
+    border: 0;
+    border-top: 1px solid #f0f0f0;
+    margin: 50px 0;
+}
+
+.pl-feature-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.pl-feat-icon {
+    min-width: 60px;
+    height: 60px;
+    font-size: 35px;
+    color: #ff2e4d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffe5e9;
+    border-radius: 50%;
+    margin-right: 20px;
+    background: #fff;
+    transition: 0.3s;
+}
+
+/* Hover effect for icons */
+.pl-feature-item:hover .pl-feat-icon {
+    background: #ff2e4d;
+    color: #fff;
+}
+
+.pl-feat-content h5 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #2a2a2a;
+}
+
+.pl-feat-content p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .pl-experience-badge {
+        width: 100px;
+        height: 100px;
+        bottom: 10px;
+    }
+
+        .pl-experience-badge .pl-years {
+            font-size: 28px;
+        }
+
+        .pl-experience-badge .pl-text {
+            font-size: 10px;
+        }
+
+    .pl-call-box {
+        border-left: none;
+        margin-top: 20px;
+        text-align: left;
+        padding-left: 0;
+    }
+}
+
+/* --- How We Work Section --- */
+.pl-work-area {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+/* Right Side Wrapper */
+.pl-work-slider-wrapper {
+    position: relative;
+    padding-left: 30px;
+}
+
+/* Content Area */
+.pl-step-content {
+    position: relative;
+    padding: 20px;
+    min-height: 400px; /* Keep height stable */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Big Faint Background Number (01, 02...) */
+.pl-big-bg-num {
+    position: absolute;
+    top: -50px;
+    right: 50px;
+    font-size: 180px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    z-index: 0;
+    text-shadow: 0 0 40px rgba(0,0,0,0.05); /* Subtle shadow */
+    pointer-events: none;
+}
+
+/* Step Image (Van) */
+.pl-step-img {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Step Text */
+.pl-step-text {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+    .pl-step-text h3 {
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        color: #2a2a2a;
+    }
+
+    .pl-step-text p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+.pl-text-red {
+    color: #ff2e4d;
+}
+
+/* --- Navigation Buttons (1, 2, 3, 4) --- */
+.pl-work-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    border: none;
+}
+
+    .pl-work-nav .nav-link {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #fff;
+        color: #2a2a2a;
+        font-weight: 700;
+        font-size: 18px;
+        border: 2px solid #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        margin: 0 10px;
+    }
+
+        /* Active State (Red Circle) */
+        .pl-work-nav .nav-link.active,
+        .pl-work-nav .nav-link:hover {
+            background-color: #fff;
+            border-color: #ff2e4d;
+            color: #ff2e4d;
+            box-shadow: 0 5px 15px rgba(255, 46, 77, 0.2);
+        }
+
+/* Dotted Lines between numbers */
+.pl-dotted-line {
+    color: #ff2e4d;
+    font-weight: 900;
+    letter-spacing: 2px;
+    opacity: 0.5;
+    margin-top: -5px; /* Adjust alignment */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+    .pl-work-slider-wrapper {
+        padding-left: 0;
+        margin-top: 50px;
+    }
+
+    .pl-big-bg-num {
+        font-size: 120px;
+        right: 0;
+        top: 0;
+    }
+
+    .pl-dotted-line {
+        display: none;
+    }
+    /* Hide dots on mobile */
+    .pl-step-img {
+        height: auto !important;
+        max-height: 200px;
+    }
+}
+
+/*approach*/
+
+/* --- Trusted Laundry Service Section (FIXED) --- */
+
+.pl-trusted-service {
+    background-color: #ffffff;
+    padding: 80px 0;
+}
+
+/* 1. Tabs Styling (RED FIX) */
+.pl-nav-pills {
+    gap: 15px; /* Tabs ke beech mein gap */
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+    .pl-nav-pills .nav-link {
+        color: #666;
+        font-weight: 700;
+        font-size: 18px; /* Font size badhaya */
+        padding: 15px 40px; /* Tabs ko bada kiya */
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        border: 1px solid #eee;
+        transition: all 0.3s ease;
+    }
+
+        /* Jab Tab par Mouse le kar jayen (Hover) */
+        .pl-nav-pills .nav-link:hover {
+            color: #ff2e4d !important; /* Text Red ho */
+            background-color: #fff0f2; /* Halka sa red background */
+            border-color: #ff2e4d;
+        }
+
+        /* Jab Tab Select ho (Active) - BLUE REMOVED */
+        .pl-nav-pills .nav-link.active {
+            background-color: #ff2e4d !important; /* Solid Red Background */
+            color: #ffffff !important; /* White Text */
+            box-shadow: 0 10px 20px rgba(255, 46, 77, 0.3); /* Red Glow */
+            border-color: #ff2e4d;
+        }
+
+/* 2. Image & Content Size Fix */
+.tab-content {
+    margin-top: 20px;
+}
+
+.pl-trusted-img {
+    width: 100%; /* Image ko full width kiya */
+    height: 450px; /* Height fix ki taake badi dikhay */
+    object-fit: cover; /* Image stretch hoke kharab nahi hogi */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: block;
+}
+
+.pl-tab-text-content {
+    padding-left: 40px; /* Text thoda right mein shift */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 450px; /* Image ke barabar height */
+}
+
+/* Title Size Badhaya */
+.pl-pane-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #2a2a2a;
+    margin-bottom: 25px;
+}
+
+.pl-tab-text-content p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #666;
+}
+
+/* 3. FAQ Styling (Red Icons) */
+.pl-accordion .accordion-button:not(.collapsed) {
+    color: #ff2e4d; /* Sawal khulne par Red ho */
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 20px;
+}
+.accordion-body {
+    font-size: 15px;
+}
+.pl-accordion .accordion-button:focus {
+    box-shadow: none; /* Blue border hataya */
+}
+
+/* Mobile Fix */
+@media (max-width: 991px) {
+    .pl-tab-text-content {
+        padding-left: 0;
+        height: auto;
+        margin-top: 30px;
+    }
+
+    .pl-trusted-img {
+        height: 300px; /* Mobile par thodi choti image */
+    }
+
+    .pl-nav-pills .nav-link {
+        width: 100%; /* Mobile par tabs full width */
+        margin-bottom: 10px;
+    }
+}
+
+/*finalSection*/
+
+/* --- Quality Service & Delivery Section --- */
+.pl-delivery-section {
+    position: relative;
+    padding: 100px 0;
+    background-color: #fff;
+    overflow: hidden; /* Taake background shape bahar na nikle */
+}
+
+/* Right Side Light Green Background Shape */
+.pl-bg-shape-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%; /* Screen ka 40% hissa le */
+    height: 100%;
+    background-color: #f0fdf4; /* Halka sa green color */
+    border-bottom-left-radius: 100% 50%; /* Shape ko curve diya */
+    z-index: 0;
+}
+
+.pl-delivery-content {
+    position: relative;
+    z-index: 2; /* Text ko background ke upar rakha */
+    padding-right: 50px;
+}
+
+/* Dotted Arrow */
+.pl-dotted-arrow {
+    position: absolute;
+    top: -40px;
+    right: 80px;
+    width: 120px;
+    opacity: 0.6;
+}
+
+/* Main Title Styling */
+.pl-main-title {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #2a2a2a;
+}
+
+.pl-text-red {
+    color: #ff2e4d;
+}
+
+.pl-desc-text {
+    font-size: 18px;
+    color: #666;
+    max-width: 450px;
+}
+
+/* Big Phone Number */
+.pl-phone-big {
+    font-size: 32px;
+    font-weight: 800;
+    color: #2a2a2a;
+    margin-top: 20px;
+}
+
+/* --- Van & Logo Overlay Styling (Important) --- */
+.pl-van-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.pl-van-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Agar van ki direction ulti ho to isay uncomment karein: transform: scaleX(-1); */
+}
+
+/* Blink It Logo Overlay */
+.pl-van-logo-overlay {
+    position: absolute;
+    top: 45%; /* Van ke upar se position */
+    left: 58%; /* Van ke left se position */
+    width: 28%; /* Logo ka size van ke hisaab se */
+    transform: translate(-50%, -50%) rotate(-5deg); /* Center kiya aur thoda sa terha kiya taake natural lage */
+}
+
+    .pl-van-logo-overlay img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+    .pl-delivery-section {
+        padding: 60px 0;
+    }
+
+    .pl-bg-shape-right {
+        width: 80%;
+        opacity: 0.5;
+    }
+    /* Mobile par shape thoda kam visible ho */
+    .pl-delivery-content {
+        padding-right: 0;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .pl-main-title {
+        font-size: 32px;
+    }
+
+    .pl-desc-text {
+        margin: 20px auto;
+    }
+
+    .pl-dotted-arrow {
+        display: none;
+    }
+
+    /* Mobile par logo ki position thodi adjust karni pad sakti hai */
+    .pl-van-logo-overlay {
+        top: 48%;
+        left: 60%;
+        width: 30%;
+    }
+}
+
+
+
+
+
+/* --- Footer Styling --- */
+
+/* --- Dark Animated Footer Styles --- */
+
+.pl-footer-section {
+    background-color: #1a1a1a; /* Dark Background */
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    color: #b0b0b0;
+    overflow: hidden; /* Bubbles bahar na nikle */
+    z-index: 1;
+}
+
+.pl-footer-widget {
+    position: relative;
+    z-index: 2; /* Text bubbles ke upar rahe */
+}
+
+/* Logo Styling */
+.pl-logo-text-white {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pl-text-red {
+    color: #ff2e4d;
+}
+
+.pl-footer-text p {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #d1d1d1;
+}
+
+/* Social Icons */
+.pl-footer-social a {
+    color: #fff;
+    background-color: #333;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+    .pl-footer-social a:hover {
+        background-color: #ff2e4d;
+        transform: translateY(-5px);
+    }
+
+/* Contact List */
+.pl-footer-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.pl-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .pl-contact-list li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        font-size: 15px;
+    }
+
+        .pl-contact-list li i {
+            font-size: 18px;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+/* Newsletter Form */
+.pl-subscribe-form input {
+    width: 100%;
+    background: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.pl-subscribe-form button {
+    width: 100%;
+    background: #ff2e4d;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+    .pl-subscribe-form button:hover {
+        background: #d61c38;
+    }
+
+/* Copyright Area */
+.pl-copyright-area {
+    border-top: 1px solid #333;
+    padding-top: 25px;
+    margin-top: 50px;
+    font-size: 14px;
+    
+}
+
+/* --- BUBBLE ANIMATION About us--- */
+.pl-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Background mein rahe */
+    pointer-events: none; /* Mouse clicks na roke */
+}
+
+    .pl-bubbles span {
+        position: absolute;
+        bottom: -50px; 
+        background: transparent;
+        border-radius: 50%;
+        pointer-events: none;
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5); /* Bubble look */
+        animation: bubbleFloat 15s linear infinite;
+    }
+
+        /* Bubble Sizes & Positions based on index */
+        .pl-bubbles span:nth-child(1) {
+            left: 10%;
+            width: 40px;
+            height: 40px;
+            animation-duration: 12s;
+            animation-delay: 0s;
+        }
+
+        .pl-bubbles span:nth-child(2) {
+            left: 20%;
+            width: 20px;
+            height: 20px;
+            animation-duration: 8s;
+            animation-delay: 2s;
+        }
+
+        .pl-bubbles span:nth-child(3) {
+            left: 35%;
+            width: 60px;
+            height: 60px;
+            animation-duration: 15s;
+            animation-delay: 4s;
+        }
+
+        .pl-bubbles span:nth-child(4) {
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            animation-duration: 10s;
+            animation-delay: 1s;
+        }
+
+        .pl-bubbles span:nth-child(5) {
+            left: 65%;
+            width: 25px;
+            height: 25px;
+            animation-duration: 11s;
+            animation-delay: 0s;
+        }
+
+        .pl-bubbles span:nth-child(6) {
+            left: 80%;
+            width: 45px;
+            height: 45px;
+            animation-duration: 14s;
+            animation-delay: 3s;
+        }
+
+        .pl-bubbles span:nth-child(7) {
+            left: 90%;
+            width: 35px;
+            height: 35px;
+            animation-duration: 9s;
+            animation-delay: 2s;
+        }
+
+        .pl-bubbles span:nth-child(8) {
+            left: 5%;
+            width: 20px;
+            height: 20px;
+            animation-duration: 18s;
+            animation-delay: 1s;
+        }
+
+        .pl-bubbles span:nth-child(9) {
+            left: 45%;
+            width: 15px;
+            height: 15px;
+            animation-duration: 13s;
+            animation-delay: 5s;
+        }
+
+        .pl-bubbles span:nth-child(10) {
+            left: 75%;
+            width: 50px;
+            height: 50px;
+            animation-duration: 16s;
+            animation-delay: 0.5s;
+        }
+
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-800px) scale(1.2); 
+        opacity: 0;
+    }
+}
+/*AboutUs PA/*/
+/* --- About Hero with IMG Tag --- */
+
+.ab-hero-section {
+    position: relative;
+    height: 350px; /* Banner ki height */
+    overflow: hidden; /* Taake image aur bubbles bahar na nikle */
+    display: flex;
+    align-items: center; /* Text ko vertical center karne ke liye */
+    justify-content: center;
+}
+
+/* 1. Background Image Styling */
+.ab-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Image ko stretch hone se bachata hai */
+    z-index: 0; /* Sabse peeche */
+}
+
+/* 2. Dark Overlay Styling */
+.ab-dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% Black Layer (Brightness control) */
+    z-index: 1; /* Image ke upar */
+}
+
+/* 3. Bubbles Styling  */
+.ab-hero-bubbles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5; /* Overlay (1) se kaafi upar rakha */
+    pointer-events: none; /* Mouse clicks pass honay de */
+}
+
+.ab-hero-bubbles span {
+    position: absolute;
+    bottom: -100px; /* Screen ke neeche se shuru hon */
+    
+    /* Bubble Styling - Thoda bright kiya hai */
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Border visible kiya */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Glow effect */
+    
+    animation: abHeroFloat 10s linear infinite;
+    opacity: 0; /* Shuru mein gayab rahein */
+}
+
+/* Bubbles ki alag alag speed aur position */
+.ab-hero-bubbles span:nth-child(1) { left: 10%; width: 60px; height: 60px; animation-duration: 8s; animation-delay: 0s; }
+.ab-hero-bubbles span:nth-child(2) { left: 25%; width: 40px; height: 40px; animation-duration: 10s; animation-delay: 2s; }
+.ab-hero-bubbles span:nth-child(3) { left: 40%; width: 70px; height: 70px; animation-duration: 12s; animation-delay: 4s; }
+.ab-hero-bubbles span:nth-child(4) { left: 60%; width: 30px; height: 30px; animation-duration: 7s; animation-delay: 1s; }
+.ab-hero-bubbles span:nth-child(5) { left: 75%; width: 50px; height: 50px; animation-duration: 11s; animation-delay: 3s; }
+.ab-hero-bubbles span:nth-child(6) { left: 90%; width: 45px; height: 45px; animation-duration: 9s; animation-delay: 2s; }
+.ab-hero-bubbles span:nth-child(7) { left: 50%; width: 20px; height: 20px; animation-duration: 6s; animation-delay: 0.5s; }
+
+/* Animation Keyframes (Yeh zaroor hona chahiye) */
+@keyframes abHeroFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1; /* Jaldi visible ho jaye */
+    }
+    90% {
+        opacity: 1; /* End tak visible rahe */
+    }
+    100% {
+        transform: translateY(-500px) scale(1.2); /* Upar tak jaye */
+        opacity: 0;
+    }
+}
+
+/* 4. Content Content Layer */
+.ab-content-layer {
+    position: relative;
+    z-index: 3; 
+    text-align: center;
+}
+
+/* Text Styles */
+.ab-hero-text .breadcrumb-item a {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.ab-hero-text .breadcrumb-item.active {
+    color: #ff2e4d;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #fff;
+}
+
+.ab-hero-text h2 {
+    font-size: 50px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-top: 5px;
+}
+/* --- About Section 2 (Collage & Stats) --- */
+
+.ab2-section {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+.text-red {
+    color: #ff2e4d;
+}
+
+/* 1. Image Collage Logic */
+.ab2-img-collage {
+    position: relative;
+    padding-bottom: 50px; /* Space for overlay image */
+    padding-left: 30px;
+}
+
+.ab2-main-img {
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.ab2-small-img-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%; /* Choti image ka size */
+    border: 8px solid #fff; /* White border separation ke liye */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: #fff;
+    overflow: hidden;
+}
+
+/* 2. Content Styling */
+.ab2-sub-title {
+    color: #ff2e4d;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.ab2-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #2a2a2a;
+    line-height: 1.3;
+    margin-bottom: 25px;
+}
+
+.ab2-desc {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Red Check List */
+.ab2-check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .ab2-check-list li {
+        font-size: 16px;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+        .ab2-check-list li i {
+            color: #ff2e4d; /* Red Checkmark */
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+
+/* 3. Statistics Counters Row */
+.ab2-counter-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.ab2-icon {
+    width: 70px;
+    height: 70px;
+    background-color: #fff0f2; /* Light Red BG */
+    color: #ff2e4d; /* Red Icon */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.ab2-count-info h3 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #2a2a2a;
+    margin: 0;
+    line-height: 1;
+}
+
+.ab2-count-info p {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0 0 0;
+    font-weight: 600;
+}
+
+/* Hover Effect for Stats */
+.ab2-counter-item:hover .ab2-icon {
+    background-color: #ff2e4d;
+    color: #fff;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+    .ab2-img-collage {
+        padding-left: 0;
+        margin-bottom: 40px;
+    }
+
+    .ab2-small-img-wrapper {
+        width: 40%;
+    }
+
+    .ab2-content {
+        padding-left: 0;
+    }
+
+    .ab2-title {
+        font-size: 32px;
+    }
+}
+/* --- How We Work Section Styling --- */
+
+.single-cat .cat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    background-color: #ff2e4d; /* BlinkIt Red */
+    border-radius: 50%;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 46, 77, 0.2);
+}
+
+    /* Bootstrap/FontAwesome Icon Style */
+    .single-cat .cat-icon i {
+        font-size: 35px;
+        color: #ffffff; /* White Icon */
+    }
+
+/* Hover Effects */
+.single-cat:hover .cat-icon {
+    background-color: #d61c38; /* Darker Red */
+    transform: translateY(-10px);
+}
+
+/* Text Colors */
+.single-cat .cat-cap h5 a {
+    color: #ff2e4d !important; /* Heading Red */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.single-cat .cat-cap p {
+    color: #000000 !important; /* Paragraph Black */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Section Title Styling */
+.section-tittle h2 {
+    color: #000;
+    font-weight: 800;
+}
+
+.section-tittle .element {
+    color: #ff2e4d;
+    font-weight: 600;
+}
+
+/* --- Services Grid Styling (Red Theme) --- */
+
+.single-service {
+    margin-bottom: 30px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+/* 1. Image Area & Floating Icon */
+.service-img {
+    position: relative; /* Zaroori hai taake icon iske hisaab se set ho */
+    overflow: visible; /* Icon bahar nikle to kate nahi */
+    margin-bottom: 30px; /* Neeche text ke liye jagah */
+}
+
+    .service-img img {
+        border-radius: 6px; /* Image ke konay thoday gol */
+        width: 100%;
+        object-fit: cover;
+        height: 250px; /* Image ki height fix rakhi taake sab barabar lagen */
+    }
+
+/* Woh Red Circle Icon */
+.service-icon {
+    position: absolute;
+    bottom: -25px; /* Image se adha neeche latka hua */
+    left: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #ff2e4d; /* BlinkIt Red */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(255, 46, 77, 0.3);
+    transition: all 0.3s ease;
+}
+
+    .service-icon i {
+        color: #fff;
+        font-size: 24px;
+    }
+
+/* Hover Effect on Icon */
+.single-service:hover .service-icon {
+    background-color: #d61c38; /* Dark Red */
+    transform: translateY(-5px);
+}
+
+/* 2. Text Content (Caption) */
+.service-cap {
+    padding: 0 10px;
+}
+
+    .service-cap h4 {
+        margin-bottom: 15px;
+    }
+
+        .service-cap h4 a {
+            color: #2a2a2a;
+            font-size: 22px; /* Purana font size */
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+            .service-cap h4 a:hover {
+                color: #ff2e4d;
+            }
+
+    .service-cap p {
+        color: #666;
+        font-size: 16px; /* Purana font size */
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+
+.more-btn {
+    display: inline-block;
+    background-color: #ff2e4d;
+    color: #fff !important;
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+    .more-btn:hover {
+        background-color: #d61c38;
+        color: #fff;
+    }
+
+/*    team*/
+
+
+
+
+.single-team .team-img {
+    margin-bottom: 25px;
+    display: inline-block; 
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%; 
+    width: 200px; 
+    height: 200px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+    transition: 0.3s;
+}
+
+    .single-team .team-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+    }
+
+
+.single-team:hover .team-img {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(255, 46, 77, 0.2); 
+}
+
+/* 2. Name Styling */
+.team-caption h3 {
+    color: #2a2a2a;
+    font-size: 22px; 
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+
+.team-caption p {
+    color: #ff2e4d; 
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Section Title Tweak */
+.section-tittle .element {
+    color: #ff2e4d !important; 
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/*FAQ*/
+/* --- FAQ Section Styling (Red Theme) --- */
+
+.faq-area .section-tittle h2 {
+    font-size: 38px;
+    font-weight: 800;
+    color: #2a2a2a;
+}
+
+.faq-area .section-tittle .element {
+    color: #ff2e4d;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+.faq-category-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2a2a2a;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Accordion Container */
+.pl-accordion .accordion-item {
+    border: 1px solid #e8e8e8;
+    margin-bottom: 15px; 
+    border-radius: 5px !important;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+
+.pl-accordion .accordion-button {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2a2a2a; 
+    background-color: #fff;
+    box-shadow: none; 
+    padding: 20px;
+}
+
+   
+    .pl-accordion .accordion-button:not(.collapsed) {
+        color: #ff2e4d; 
+        background-color: #fff; 
+        box-shadow: none;
+    }
+
+    /* Icon Styling (+ / -) */
+    .pl-accordion .accordion-button::after {
+      
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%232a2a2a'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        transition: 0.3s;
+    }
+
+    /* Active Icon (Red color) */
+    .pl-accordion .accordion-button:not(.collapsed)::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ff2e4d'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
+
+
+.pl-accordion .accordion-body {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    padding: 0 20px 20px 20px;
+    border-top: none;
+}
+
+/*pricing ka section*/
+
+/* --- Pricing Card Red Theme --- */
+
+.pricing-area {
+    padding: 60px 0;
+}
+
+.pr-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Zaroori hai animation ke liye */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    /* Hover Effect: Card thoda upar uthega */
+    .pr-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(255, 46, 77, 0.15);
+        border-color: #ff2e4d;
+    }
+
+/* --- Top Icon Circle --- */
+.pr-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: #ff2e4d; /* Red Background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+    box-shadow: 0 8px 20px rgba(255, 46, 77, 0.3);
+    transition: 0.3s;
+}
+
+    .pr-icon-wrapper i {
+        font-size: 35px;
+        color: #fff;
+    }
+
+/* --- Typography --- */
+.pr-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #2a2a2a;
+    margin-bottom: 5px;
+}
+
+.pr-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff2e4d; /* Red Text */
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    display: block;
+}
+
+/* --- Features List --- */
+.pr-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    text-align: left;
+    padding-left: 15px;
+}
+
+    .pr-features li {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+        /* Green Check Icon styled as Red Tick */
+        .pr-features li::before {
+            content: "\f00c"; /* FontAwesome Check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #ff2e4d;
+        }
+
+/* --- Price Tag --- */
+.pr-price-box {
+    margin-top: auto; /* Bottom par push karne ke liye */
+    margin-bottom: 60px; /* Jagah banayi button ke liye */
+    transition: 0.3s;
+}
+
+.pr-price {
+    font-size: 36px;
+    font-weight: 800;
+    color: #2a2a2a;
+}
+
+.pr-currency {
+    font-size: 20px;
+    vertical-align: super;
+}
+
+/* --- ANIMATED BUTTON --- */
+.pr-btn-container {
+    position: absolute;
+    bottom: -70px; /* Shuru mein chhupa hua */
+    left: 0;
+    width: 100%;
+    padding: 0 30px 30px 30px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce effect */
+}
+
+/* Hover par Button Upar Aayega */
+.pr-card:hover .pr-btn-container {
+    bottom: 0;
+}
+
+/* Button Styling */
+.pr-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #ff2e4d;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+    .pr-btn:hover {
+        background-color: #d61c38;
+        color: #fff;
+    }
+
+/* --- Weight Card Specifics (Plus/Minus) --- */
+.weight-ctrl-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-circle-custom {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #ff2e4d;
+    background: transparent;
+    color: #ff2e4d;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+    .btn-circle-custom:hover {
+        background: #ff2e4d;
+        color: #fff;
+    }
+
+.qty-input-custom {
+    width: 60px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2a2a2a;
+    border: none;
+    background: transparent;
+}
+
+/* --- Pricing Card Red Theme --- */
+
+.pricing-area {
+    padding: 60px 0;
+}
+
+.pr-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Zaroori hai animation ke liye */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    /* Hover Effect: Card thoda upar uthega */
+    .pr-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(255, 46, 77, 0.15);
+        border-color: #ff2e4d;
+    }
+
+/* --- Top Icon Circle --- */
+.pr-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: #ff2e4d; /* Red Background */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px auto;
+    box-shadow: 0 8px 20px rgba(255, 46, 77, 0.3);
+    transition: 0.3s;
+}
+
+    .pr-icon-wrapper i {
+        font-size: 35px;
+        color: #fff;
+    }
+
+/* --- Typography --- */
+.pr-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #2a2a2a;
+    margin-bottom: 5px;
+}
+
+.pr-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff2e4d; /* Red Text */
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    display: block;
+}
+
+/* --- Features List --- */
+.pr-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    text-align: left;
+    padding-left: 15px;
+}
+
+    .pr-features li {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+        /* Green Check Icon styled as Red Tick */
+        .pr-features li::before {
+            content: "\f00c"; /* FontAwesome Check */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #ff2e4d;
+        }
+
+/* --- Price Tag --- */
+.pr-price-box {
+    margin-top: auto; /* Bottom par push karne ke liye */
+    margin-bottom: 60px; /* Jagah banayi button ke liye */
+    transition: 0.3s;
+}
+
+.pr-price {
+    font-size: 36px;
+    font-weight: 800;
+    color: #2a2a2a;
+}
+
+.pr-currency {
+    font-size: 20px;
+    vertical-align: super;
+}
+
+/* --- ANIMATED BUTTON --- */
+.pr-btn-container {
+    position: absolute;
+    bottom: -70px; /* Shuru mein chhupa hua */
+    left: 0;
+    width: 100%;
+    padding: 0 30px 30px 30px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce effect */
+}
+
+/* Hover par Button Upar Aayega */
+.pr-card:hover .pr-btn-container {
+    bottom: 0;
+}
+
+/* Button Styling */
+.pr-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #ff2e4d;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255, 46, 77, 0.4);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+    .pr-btn:hover {
+        background-color: #d61c38;
+        color: #fff;
+    }
+
+/* --- Weight Card Specifics (Plus/Minus) --- */
+.weight-ctrl-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-circle-custom {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #ff2e4d;
+    background: transparent;
+    color: #ff2e4d;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+    .btn-circle-custom:hover {
+        background: #ff2e4d;
+        color: #fff;
+    }
+
+.qty-input-custom {
+    width: 60px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2a2a2a;
+    border: none;
+    background: transparent;
+}
+
+/* Container styling */
+.custom-login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(211, 47, 47, 0.1); /* Subtle red shadow */
+    border: 1px solid #f5f5f5;
+}
+
+/* Title styling */
+.auth-title {
+    color: #d32f2f; /* Deep Red */
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-align:center;
+}
+
+/* Label & Input styling */
+.custom-label {
+    font-weight: 600;
+    color: red;
+    margin-bottom: 5px;
+    font-size:medium;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eeeeee;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+    .custom-input:focus {
+        border-color: #d32f2f;
+        outline: none;
+        box-shadow: 0 0 8px rgba(211, 47, 47, 0.2);
+    }
+
+/* Button styling */
+/*.custom-red-btn {
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+}*/
+
+/*    .custom-red-btn:hover {
+        background-color: #b71c1c;
+        box-shadow: 0 4px 12px rgba(183, 28, 28, 0.3);
+    }*/
+
+/* Link styling */
+/*.custom-red-link {
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: bold;
+}*/
+/*
+    .custom-red-link:hover {
+        text-decoration: underline;
+    }*/
+
+/* Alert styling */
+.custom-alert-red {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #d32f2f;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+/* Container Spacing */
+.custom-orders-container {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Action Buttons Styling */
+.pl-action-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.edit-btn {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+    .edit-btn:hover {
+        background-color: #2e7d32;
+        color: white;
+    }
+
+.delete-btn {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+    .delete-btn:hover {
+        background-color: #c62828;
+        color: white;
+    }
+
+/* List Item Hover Effect */
+.list-group-item {
+    transition: transform 0.2s ease;
+    border: 1px solid #f0f0f0 !important;
+}
+
+    .list-group-item:hover {
+        transform: scale(1.01);
+        border-color: #d32f2f !important;
+    }
+

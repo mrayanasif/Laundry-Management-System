@@ -1,0 +1,378 @@
+﻿@{
+
+    ViewData["Title"] = "AboutUs Page - Blink It";
+
+
+}
+<style>
+    /* Section Container */
+    .why-choose-section {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 80px 20px;
+        background-color: #fff;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Main Title */
+    .section-heading {
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 70px;
+    }
+
+    /* Grid Layout */
+    .features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 70px;
+    }
+
+    /* Individual Item */
+    .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 25px;
+    }
+
+
+    .icon-circle {
+        flex-shrink: 0;
+        width: 90px; 
+        height: 90px;
+        background-color: #f9f9f9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    /* Icon SVG */
+    .icon-svg {
+        width: 40px; 
+        height: 40px;
+        stroke: red;
+        stroke-width: 2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .feature-content h3 {
+        font-size: 1.8rem; 
+        font-weight: 700;
+        color: black;
+        margin-bottom: 12px;
+        margin-top: 0;
+    }         
+    .section-heading {
+        font-size: 2.5rem; 
+    }
+
+    
+    </style>
+<main>
+<!--? Hero Start -->
+    <div class="ab-hero-section">
+
+        <img src="~/website/img/hero/hero2.png" alt="Background" class="ab-bg-img">
+
+        <div class="ab-dark-overlay"></div>
+
+        <div class="ab-hero-bubbles">
+            <span style="--i:11;"></span>
+            <span style="--i:12;"></span>
+            <span style="--i:24;"></span>
+            <span style="--i:10;"></span>
+            <span style="--i:14;"></span>
+            <span style="--i:23;"></span>
+            <span style="--i:18;"></span>     
+        </div>
+
+        <div class="container ab-content-layer">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="ab-hero-text">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center bg-transparent p-0 m-0">
+                                <li class="breadcrumb-item"><a href="/Home">home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                            </ol>
+                        </nav>
+
+                        <h2>About Us</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Hero End -->
+
+    <!--? About Area  -->
+    <section class="ab2-section section-padding40"> 
+        <div class="container">
+            <div class="row align-items-center mb-5">
+
+                <div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
+                    <div class="ab2-img-collage">
+                        <img src="~/website/img/hero/cart1.jpg" alt="Laundry Professional" class="img-fluid ab2-main-img">
+
+                        <div class="ab2-small-img-wrapper">
+                            <img src="~/website/img/hero/cart.jpg" alt="Laundry Basket" class="img-fluid ab2-small-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="ab2-content pl-4">
+                        <span class="ab2-sub-title">About Our Company</span>
+                        <h2 class="ab2-title">Your Dry Cleaning and <br> Laundry. <span class="text-red">Done.</span></h2>
+
+                        <p class="ab2-desc">
+                            We are professionals in the laundry and dry cleaning business, which means we always stay up to date on the latest technologies, cleaning methods, and solutions for dealing with stains or delicate fabrics.
+                        </p>
+
+                        <ul class="ab2-check-list">
+                            <li><i class="fa-solid fa-check"></i> 100% Customer Satisfaction</li>
+                            <li><i class="fa-solid fa-check"></i> Free Collection & Delivery</li>
+                            <li><i class="fa-solid fa-check"></i> Affordable Prices</li>
+                            <li><i class="fa-solid fa-check"></i> Best Quality Guarantee</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5 pt-4 ab2-stats-row">
+                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                    <div class="ab2-counter-item">
+                        <div class="ab2-icon">
+                            <i class="fa-solid fa-shirt"></i>
+                        </div>
+                        <div class="ab2-count-info">
+                            <h3><span class="counter">50000</span>+</h3>
+                            <p>Shirts Washed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                    <div class="ab2-counter-item">
+                        <div class="ab2-icon">
+                            <i class="fa-solid fa-soap"></i>
+                        </div>
+                        <div class="ab2-count-info">
+                            <h3><span class="counter">50</span>+</h3>
+                            <p>Washing Machines</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                    <div class="ab2-counter-item">
+                        <div class="ab2-icon">
+                            <i class="fa-solid fa-jug-detergent"></i>
+                        </div>
+                        <div class="ab2-count-info">
+                            <h3><span class="counter">10000</span>+</h3>
+                            <p>Dry Cleaned Items</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                    <div class="ab2-counter-item">
+                        <div class="ab2-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="ab2-count-info">
+                            <h3><span class="counter">98.9</span>%</h3>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- About Area End -->
+
+    <!--? Services Area Start -->
+    <section class="services-area pt-top border-bottom pb-20 mb-60">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <span class="element">Our Process</span>
+                        <h2>This is how we work</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-cat text-center">
+                        <div class="cat-icon">
+                            <i class="fa-solid fa-truck-pickup"></i>
+                        </div>
+                        <div class="cat-cap">
+                            <h5><a href="services.html">We collect your clothes</a></h5>
+                            <p>Simply schedule a pickup time that fits your schedule. Our professional drivers will come directly to your doorstep to collect your laundry bags, hassle-free.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-cat text-center">
+                        <div class="cat-icon">
+                            <i class="fa-solid fa-soap"></i>
+                        </div>
+                        <div class="cat-cap">
+                            <h5><a href="services.html">Wash your clothes</a></h5>
+                            <p>We treat your garments with the utmost care. Using premium, eco-friendly detergents and state-of-the-art machinery, we ensure a deep clean while protecting your fabrics.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-cat text-center">
+                        <div class="cat-icon">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <div class="cat-cap">
+                            <h5><a href="services.html">Get delivery</a></h5>
+                            <p>Experience the joy of perfectly folded, fresh laundry. We deliver your clean clothes back to you promptly, so you can spend your time on what matters most.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services End -->
+
+    <div class="why-choose-section">
+        <h1 class="section-heading">Why Choose Us</h1>
+
+        <div class="features-grid">
+
+            <div class="feature-item">
+                <div class="icon-circle">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Outclass Customer Service</h3>
+                    <h4>Your order is assigned to the dedicated customer service team and one account manager is assigned for recurring customers</h4>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon-circle">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Affordable Pricing</h3>
+                    <h4>Prices that suits your pocket is one of our goal. We have different sort of flexible packages to cater with your long term laundry needs</h4>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon-circle">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Convenience</h3>
+                    <h4>With just a tap of a button, your laundry gets done, giving your leisure time to spend with family and friends.</h4>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon-circle">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Quality</h3>
+                    <h4>We use the best products and detergents to assure that your favorite clothes are always there for you to wear. Furthermore, we have separate quality department to monitor this.</h4>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon-circle">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Quick Pickup & Delivery</h3>
+                    <h4>With our quick delivery, we would get your laundry done in within 2 days.</h4>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon-circle">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                </div>
+                <div class="feature-content">
+                    <h3>Instant Order Update</h3>
+                    <h4>Regular updates of your order through WhatsApp, to help you keep a track of your laundry and plan accordingly.</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @* Team *@
+    <section class="team-area section-padding40">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <span class="element">[ Our Team ]</span>
+                        <h2>Laundry Specialists</h2>
+                        <p class="mt-3" style="color: #666; font-size: 16px;">
+                            Our team’s goal each day is to earn your business with each visit and to make your experience with us the absolute best.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-team mb-30 text-center">
+                        <div class="team-img">
+                            <img src="~/website/img/gallery/man1.png" alt="Charles Rock">
+                        </div>
+                        <div class="team-caption">
+                            <h3>Zain Ali</h3>
+                            <p>Operations Manager</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-team mb-30 text-center">
+                        <div class="team-img">
+                            <img src="~/website/img/gallery/team-2.jpg" alt="Justin Stein">
+                        </div>
+                        <div class="team-caption">
+                            <h3>Maaz Faisal</h3>
+                            <p>Service Manager</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="single-team mb-30 text-center">
+                        <div class="team-img">
+                            <img src="~/website/img/hero/manprof.jpg" alt="Amy Hellickson">
+                        </div>
+                        <div class="team-caption">
+                            <h3>Raza Mir</h3>
+                            <p>Wash Expert</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>  
+    @* Team *@
+</main>

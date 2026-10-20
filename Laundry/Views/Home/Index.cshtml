@@ -1,0 +1,594 @@
+﻿@{
+    ViewData["Title"] = "Home Page - BlinkIt";
+}
+    <style>
+
+        .carousel-item {
+            height: 100vh;
+            background-color: #000;
+            position: relative;
+        }
+
+            .carousel-item img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                opacity: 0.8; 
+            }
+
+     
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+       
+        .carousel-caption {
+            top: 50%;
+            transform: translateY(-50%);
+            bottom: initial;
+            z-index: 2;
+            text-align: left; 
+            left: 10%;
+            right: 10%;
+        }
+
+      
+        .btn-custom {
+            background-color: red;
+            border-color: white;
+            color: white;
+            padding: 12px 35px;
+            font-size: 2.2rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-decoration:none;   
+        }
+
+            .btn-custom:hover {
+                background-color: white;
+                color: darkred  ;
+            }
+
+        
+        
+
+        .carousel-item h1,
+        .carousel-item p,
+        .carousel-item .btn {
+            opacity: 0; 
+        }
+
+       
+        .carousel-item.active h1 {
+            animation: slideDown 1s ease-out forwards;
+            animation-delay: 0.2s;
+        }
+
+      
+        .carousel-item.active p {
+            animation: slideUp 1s ease-out forwards;
+            animation-delay: 0.6s;
+            color: white;
+            font-size:20px;
+        }
+
+     
+        .carousel-item.active .btn {
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        @@keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @@keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+       
+
+        
+    </style>
+        <!--? slider Area Start-->
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <div class="overlay"></div>
+                <img src="~/website/img/hero/banner-one.png">
+                <div class="carousel-caption">
+                    <h1 class="display-3 fw-bold mb-3">Quality Laundry <br> Service In Your City</h1>
+                    <p class="fs-4 fw-light mb-4">We take care about cleanness of your cloth.</p>
+                    <a asp-action="Service" class="btn-custom">Explore Services</a>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="overlay"></div>
+                <img src="~/website/img/hero/header-pic.png" alt="Dry Cleaning">
+                <div class="carousel-caption">
+                    <h1 class="display-3 fw-bold mb-3">Premium Dry <br> Cleaning Solutions</h1>
+                    <p class="fs-4 fw-light mb-4">Delicate care for your most expensive fabrics.</p>
+                    <a asp-controller="Orders" asp-action="Create" class="btn-custom">View Pricing</a>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="overlay"></div>
+                <img src="~/website/img/hero/banner-three.png" alt="Delivery">
+                <div class="carousel-caption">
+                    <h1 class="display-3 fw-bold mb-3">Fast & Free <br> Pickup and Delivery</h1>
+                    <p class="fs-4 fw-light mb-4">Schedule a pickup today and get fresh clothes tomorrow.</p>
+                    <a asp-controller="Orders" asp-action="Create" class="btn-custom">Book Now</a>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+        <!-- slider Area End-->
+
+    <!--? About Area  -->
+    <section class="about-area2 section-padding40 pl-about-section">
+        <div class="container">
+
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 col-md-12">
+                    <div class="pl-img-wrapper">
+                        <img src="~/website/img/hero/img01-home.jpg" alt="About Laundry" class="img-fluid w-100">
+
+                        <div class="pl-experience-badge">
+                            <span class="pl-years">25</span>
+                            <span class="pl-text">years of<br>experience</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="about-caption pl-about-caption">
+                        <span class="pl-sub-title">More than 25 Years of Experience</span>
+
+                        <h2 class="pl-main-title">We are Passionate About Laundry</h2>
+
+                        <p class="pl-desc-text">
+                            We are professionals in the laundry and dry cleaning business, which means we always stay up to date on the latest technologies, cleaning methods, and solutions for dealing with stains or delicate fabrics. Plus, we maintain the highest standards of business integrity.
+                        </p>
+
+                        <div class="row mt-4 align-items-center">
+                            <div class="col-md-7">
+                                <ul class="pl-check-list">
+                                    <li>100% Customer Satisfaction</li>
+                                    <li>Free Collection & Delivery</li>
+                                    <li>Affordable Prices</li>
+                                    <li>Best Quality</li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="pl-call-box">
+                                    <div class="pl-call-icon">
+                                        <i class="fa-solid fa-phone-volume"></i>
+                                    </div>
+                                    <div class="pl-call-text">
+                                        <span>Call for Quality Services</span>
+                                        <h4>021 (354) 25-1-211</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Schedule Your Pickup</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="pl-divider">
+
+            <div class="row mt-5">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pl-feature-item">
+                        <div class="pl-feat-icon">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <div class="pl-feat-content">
+                            <h5>Save Time & Money</h5>
+                            <p>No more wasted time driving to the laundromats, we pickup and deliver for free!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pl-feature-item">
+                        <div class="pl-feat-icon">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div class="pl-feat-content">
+                            <h5>Pay Online in Seconds</h5>
+                            <p>Manage your Press account and billing online from your smartphone or computer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pl-feature-item">
+                        <div class="pl-feat-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="pl-feat-content">
+                            <h5>Eco-Friendly</h5>
+                            <p>We use safe and clean perc-free solvents, so you, and the Earth, can look good.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- About Area End -->
+
+    <!--? Services Area Start -->
+    <section class="pl-work-area section-padding40">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-5 col-md-12 mb-5 mb-lg-0">
+                    <span class="pl-sub-title">[ Get Your Clothes Collected & Have Hassle Free Delievery On Time ]</span>
+                    <h2 class="pl-main-title">How We Work</h2>
+                    <p class="pl-desc-text">
+                        Our Service is dedicated to making your life easier by providing pickup laundry service. Give yourself one less thing to worry about and try our residential wash and fold service.
+                    </p>
+                    <p class="pl-desc-text mb-4">
+                        We have been in the laundry business for more than 12 years. Try us today and save your precious time 
+                    </p>
+                    <a asp-controller="Orders" asp-action="Create" class="pl-btn-red">Avail Your Service Now</a>
+                </div>
+
+                <div class="col-lg-7 col-md-12">
+                    <div class="pl-work-slider-wrapper">
+
+                        <div class="tab-content" id="workStepsContent">
+
+                            <div class="tab-pane fade show active" id="step1" role="tabpanel">
+                                <div class="pl-step-content">
+                                    <div class="pl-big-bg-num">01</div>
+                                    <img src="~/website/img/hero/stepbox-img01.png" alt="Pick Up" class="pl-step-img animate__animated animate__fadeInRight">
+                                    <div class="pl-step-text">
+                                        <h3><span class="pl-text-red">Bag Up</span> All Your Dirty Clothes</h3>
+                                        <p>We are pleased to pickup yourlaundry and ensure that it is expertly laundered and pressed.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="step2" role="tabpanel">
+                                <div class="pl-step-content">
+                                    <div class="pl-big-bg-num">02</div>
+                                    <img src="~/website/img/hero/Van-01.png" alt="Wash" class="pl-step-img animate__animated animate__fadeInRight" style="height: 200px;">
+                                    <div class="pl-step-text">
+                                        <h3>We <span class="pl-text-red">Pick Up</span> Your Clothes</h3>
+                                        <p> Morning of your pickup, leave your bags in their designated pickup location by 8:00 am for a driver to pick up..
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="step3" role="tabpanel">
+                                <div class="pl-step-content">
+                                    <div class="pl-big-bg-num">03</div>
+                                    <img src="~/website/img/hero/Img-02.png" alt="Fold" class="pl-step-img animate__animated animate__fadeInRight" style="height: 200px;">
+                                    <div class="pl-step-text">
+                                        <h3>We <span class="pl-text-red">Clean</span> Your Clothes</h3>
+                                        <p>
+                                            Our facilities are so good we guarantee you’ll be satisfied – we put a quality guarantee on all items.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="step4" role="tabpanel">
+                                <div class="pl-step-content">
+                                    <div class="pl-big-bg-num">04</div>
+                                    <img src="~/website/img/hero/stepbox-img04.png" alt="Delivery" class="pl-step-img animate__animated animate__fadeInRight" style="height: 200px;">
+                                    <div class="pl-step-text">
+                                        <h3>We <span class="pl-text-red">Delivery</span> Clean,Folded Clothes</h3>
+                                        <p>Experience the joy of perfectly folded, fresh laundry delivered back to your doorstep promptly.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <ul class="nav nav-pills pl-work-nav" id="workStepsTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="step1-tab" data-bs-toggle="pill" data-bs-target="#step1" type="button">1</button>
+                            </li>
+                            <li class="pl-dotted-line">..........</li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="step2-tab" data-bs-toggle="pill" data-bs-target="#step2" type="button">2</button>
+                            </li>
+                            <li class="pl-dotted-line">..........</li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="step3-tab" data-bs-toggle="pill" data-bs-target="#step3" type="button">3</button>
+                            </li>
+                            <li class="pl-dotted-line">..........</li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="step4-tab" data-bs-toggle="pill" data-bs-target="#step4" type="button">4</button>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- Services End -->
+
+     @* approaches *@
+    <section class="pl-trusted-service section-padding40">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="pl-main-title mb-5">Trusted Laundry Service</h2>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8">
+                    <ul class="nav nav-pills pl-nav-pills nav-fill" id="trustedTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="approach-tab" data-bs-toggle="pill" data-bs-target="#approach-pane" type="button" role="tab" aria-controls="approach-pane" aria-selected="true">Our Approach</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="qa-tab" data-bs-toggle="pill" data-bs-target="#qa-pane" type="button" role="tab" aria-controls="qa-pane" aria-selected="false">Questions / Answers</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="why-tab" data-bs-toggle="pill" data-bs-target="#why-pane" type="button" role="tab" aria-controls="why-pane" aria-selected="false">Why Choose Us</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab-content" id="trustedTabContent">
+
+                <div class="tab-pane fade active show" id="approach-pane" role="tabpanel" aria-labelledby="approach-tab">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="~/website/img/gallery/home-blog3.png" alt="Our Approach" class="img-fluid pl-trusted-img">
+                        </div>
+                        <div class="col-lg-6 pl-tab-text-content">
+                            <h3 class="pl-pane-title">Our Approach to Cleanliness</h3>
+                            <p>We use a multi-step process to ensure your clothes are perfectly clean. From careful sorting to using premium, eco-friendly detergents, our approach is designed for quality and fabric care.</p>
+                            <ul class="pl-check-list mt-4">
+                                <li>Thorough Inspection</li>
+                                <li>Premium Eco-Friendly Detergents</li>
+                                <li>Delicate Fabric Handling</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="qa-pane" role="tabpanel" aria-labelledby="qa-tab">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="~/website/img/hero/about us.jpg" alt="Questions & Answers" class="img-fluid pl-trusted-img">
+                        </div>
+                        <div class="col-lg-6 pl-tab-text-content">
+                            <h3 class="pl-pane-title mb-4">Frequently Asked Question </h3>
+
+                            <div class="accordion pl-accordion" id="accordionQA">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            What if my clothes are heavily stained?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionQA">
+                                        <div class="accordion-body">
+                                            We try our best to remove the stains by adapting the best washing cycle, detergent, temperature suitable for the garment, however in case of tough stains, we would recommend you to use our stain removal or dry cleaning service.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            How long you take to return the Clothes?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionQA">
+                                        <div class="accordion-body">
+                                            Our standard turnaround time is 24-48 hours for laundry and 48-72 hours for dry cleaning. We also offer express service for urgent needs.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            How can I pay for the services?
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionQA">
+                                        <div class="accordion-body">
+                                            You can pay online via our secure portal using credit/debit cards, or you can choose cash on delivery.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="why-pane" role="tabpanel" aria-labelledby="why-tab">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="~/website/img/gallery/gallery3.png" alt="Why Choose Us" class="img-fluid pl-trusted-img">
+                        </div>
+                        <div class="col-lg-6 pl-tab-text-content">
+                            <h3 class="pl-pane-title">Why Choose Us</h3>
+                            <p>We are committed to providing the best laundry experience. From our professional staff to our state-of-the-art technology, we ensure your clothes get the best care possible.</p>
+                            <div class="row mt-4">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-medal pl-text-red me-3 fs-3"></i>
+                                        <h5 class="mb-0">Quality</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-clock pl-text-red me-3 fs-3"></i>
+                                        <h5 class="mb-0">Reliability</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-dollar-sign pl-text-red me-3 fs-3"></i>
+                                        <h5 class="mb-0">Affordable</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    @* approach end *@
+
+    <!-- Testimonials_start -->
+        <section class="testimonials-area testimonials-overly  position-relative">
+            <div class="container">
+                <div class="border-bottom section-padding40 ">
+                    <div class="row">
+                        <div class="col-xl-12 ">
+                            <!-- testmonial-image -->
+                            <div class="testmonial-nav text-center">
+                                <div class="testmonial-thumb">
+                                    <img src="~/website/img/gallery/testimonila1.png" alt="">
+                                </div>
+                                <div class="testmonial-thumb">
+                                    <img src="~/website/img/gallery/testimonila2.png" alt="">
+                                </div>
+                                <div class="testmonial-thumb">
+                                    <img src="~/website/img/gallery/testimonila3.png" alt="">
+                                </div>
+                                <div class="testmonial-thumb">
+                                    <img src="~/website/img/gallery/testimonila3.png" alt="">
+                                </div>
+                            </div>
+                            <div class="testmonial-item-active text-center">
+                                <!-- testimonial-single-items -->
+                                
+                                <!-- testimonial-single-items -->
+                                <div class="testmonial-item ">
+                                <p class="pera">"Super convenient! They picked up my heavy winter coats and returned them fresh and clean within 24 hours. The free delivery is a lifesaver."!</p>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p> - Rabia</p>
+                                </div>
+                                <!-- testimonial-single-items -->
+                                <div class="testmonial-item ">
+                                <p class="pera">"Affordable prices and professional staff. I use them every week for my office wear. Highly recommended for anyone with a busy schedule."!</p>
+                                    <div class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p> - Romana</p>
+                                </div>
+
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials_end -->
+
+@* <Van Info Delivery *@
+    <section class="pl-delivery-section section-padding40">
+        <div class="pl-bg-shape-right"></div> <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6 col-md-12 mb-5 mb-lg-0 pl-delivery-content">
+                    <img src="~/website/img/hero/dotted-arrow.png" alt="" class="pl-dotted-arrow d-none d-lg-block">
+
+                    <h2 class="pl-main-title">
+                        Quality Service with <br>
+                        <span class="pl-text-red">Free Collection & Delivery</span>
+                    </h2>
+                    <p class="pl-desc-text my-4">
+                        It is our goal to offer you the best possible laundry and dry cleaning service available.
+                    </p>
+                    <h3 class="pl-phone-big">021 (354) 25-1-211</h3>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                    <div class="pl-van-wrapper">
+                        <img src="~/website/img/hero/van-final.jpg" alt="Delivery Van" class="img-fluid pl-van-img">
+
+                       
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </main>

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Laundry.Models.Order>
+@{
+    ViewData["Title"] = "Booking - BlinkIt";
+}
+   <!--? Hero Start -->
+<div class="ab-hero-section">
+
+    <img src="~/website/img/hero/Washing-About.jpg" alt="Background" class="ab-bg-img">
+
+    <div class="ab-dark-overlay"></div>
+
+    <div class="ab-hero-bubbles">
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+    </div>
+
+    <div class="container ab-content-layer">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="ab-hero-text">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center bg-transparent p-0 m-0">
+                            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Invoice</li>
+                        </ol>
+                    </nav>
+
+                    <h2>Your Invoice</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+@* invoice order list display  *@
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+        <h5 class="text-danger fw-bolder fs-3 text-center p-2"> You Have Not Placed Any Booking Yet !</h5>
+    </div>
+    }
+    else
+    {
+
+    <div class="custom-orders-container">
+        <h3 class="auth-title text-center mb-4">MY ORDERS</h3>
+
+        <ul class="list-group shadow-sm">
+            @foreach (var order in Model)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3 mb-2 border-0 shadow-sm rounded">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-light text-danger rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px; font-size: 20px;">
+                            <i class="fa fa-receipt"></i>
+                        </div>
+
+                        <div>
+                            <h4 class="mb-0 font-weight-bolder">Order #@order.OrderId</h4>
+                            <span class="text-muted">Date: @order.OrderDate.ToShortDateString()</span>
+                            <div class="mt-1">
+                                @if (order.Status == "Pending")
+                                {
+                                    <span class="text-warning gj-font-size-16">Pending</span>
+                                }
+                                else if (order.Status == "Processing")
+                                {
+                                    <span class="text-primary gj-font-size-16">Processing</span>
+                                }
+                                else if (order.Status == "Out For Delivery")
+                                {
+                                    <span class="text-info gj-font-size-16">Out For Delivery</span>
+                                }
+                                else if (order.Status == "Delivered")
+                                {
+                                    <span class="text-success gj-font-size-16">Completed</span>
+                                }
+                                else
+                                {
+                                    <span>@order.Status</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-end">
+                        <h4 class="mb-2 text-danger fw-bolder"> Rs. @order.TotalAmount.ToString("0")</h4>
+
+                        <div class="d-flex gap-2 align-items-center">
+                            @if (order.Status == "Pending")
+                            {
+                                <a asp-action="Edit" asp-route-id="@order.OrderId" class="pl-action-btn edit-btn" title="Update">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@order.OrderId" class="pl-action-btn delete-btn" title="Remove">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                @if (order.Status == "Processing")
+                                {
+                                    <span class="badge bg-primary text-white gj-font-size-16">Processing</span>
+                                }
+                                else if (order.Status == "Out For Delivery")
+                                {
+                                    <span class="badge bg-info text-dark gj-font-size-16">Out For Delivery</span>
+                                }
+                                else if (order.Status == "Completed" || order.Status == "Delivered")
+                                {
+                                    <span class="badge bg-success text-white gj-font-size-16">Completed</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary text-white">@order.Status</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+    }
