@@ -3,6 +3,9 @@
 Welcome to the **BlinkIt Online Laundry Management System**, a high-performance, responsive, and fully automated web application designed to streamline modern laundry operations. The application caters specifically to students, hostelites, busy professionals, and families by offering door-to-door laundry pickup and delivery with automated order tracking, customized packages, dynamic invoices, and an intuitive administration control panel.
 
 ---
+## 👥 Project Team & Academic Credits
+
+Developed as part of the **Aptech Computer Education (HDSE I - E-Project)** curriculum under the guidance of **Sir Affan Mughal**.
 
 ## 🌟 Key System Features
 
@@ -93,6 +96,3 @@ Open **`appsettings.json`** in the root project folder and update the connection
 
 ---
 
-## 👥 Project Team & Academic Credits
-
-Developed as part of the **Aptech Computer Education (HDSE I - E-Project)** curriculum under the guidance of **Sir Affan Mughal**.
