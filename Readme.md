@@ -6,7 +6,7 @@ Welcome to the **BlinkIt Online Laundry Management System**, a high-performance,
 ## 👥 Project Team & Academic Credits
 
 Developed as part of the **Aptech Computer Education (HDSE I - E-Project)** curriculum under the guidance of **Sir Affan Mughal**.
-
+LIVE ("http://blinkit-rayan.runasp.net/")
 ## 🌟 Key System Features
 
 ### 1. 👥 Customer-Centric Web Portal
